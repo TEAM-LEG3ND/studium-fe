@@ -1,11 +1,16 @@
 @use "../abstracts/variables" as vars
 @use "../base/reset"
+@use "../base/_typography" as typo
   
 :root
   @extend vars !optional
+
+html
+  font-size: typo.$size--16
 
 body
   block-size: 100%
   inline-size: 100%
   min-block-size: 100vh
+
 
