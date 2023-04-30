@@ -1,13 +1,11 @@
-import { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/layout/Layout.module.sass";
 
 import { noto_sans_kr, source_sans_pro } from "@/utils/fonts";
+import { WithChildren } from "@/utils/util-types";
 
-type LayoutProps = {
-  children: ReactNode;
-};
+type LayoutProps = WithChildren<{}>;
 
 function Layout({ children }: LayoutProps) {
   return (
