@@ -16,7 +16,7 @@ function MainHeader() {
       <div className={styles.logo_container}>
         <Link href={HOME_PATH}>
           <Image
-            src={`/studium-logo.png`}
+            src={`https://studium-fe.s3.ap-northeast-2.amazonaws.com/public/studium-logo.png`}
             alt={"Studium logo"}
             width={60}
             height={56}
@@ -24,7 +24,7 @@ function MainHeader() {
             className={styles.logo_img}
           />
           <Image
-            src={`/studium-title.svg`}
+            src={`https://studium-fe.s3.ap-northeast-2.amazonaws.com/public/studium-title.svg`}
             alt={"Studium title"}
             width={120}
             height={40}

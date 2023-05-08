@@ -10,7 +10,7 @@ function ProfileBtn() {
         className={styles.profile_btn}
       >
         <Image
-          src={"/icon/avatar.svg"}
+          src={`https://studium-fe.s3.ap-northeast-2.amazonaws.com/public/icon/avatar.svg`}
           alt="profile_icon"
           width={44}
           height={44}
