@@ -4,7 +4,7 @@ import styles from "@/styles/layout/Layout.module.sass";
 
 import { WithChildren } from "@/utils/util-types";
 import { noto_sans_kr, source_sans_pro } from "@/utils/fonts";
-import { HOME_PATH } from "@/utils/routes";
+import MainHeader from "@/components/common/MainHeader";
 
 type LayoutProps = WithChildren<{}>;
 
@@ -13,48 +13,25 @@ function Layout({ children }: LayoutProps) {
     <div
       className={`${styles.root_container} ${noto_sans_kr.className} ${source_sans_pro.variable}`}
     >
-      <header className={styles.main_header}>
-        <div className={styles.logo_container}>
-          <Link href={HOME_PATH}>
+      <MainHeader />
+      <main className={styles.contents_container}>
+        <button
+          tabIndex={-1}
+          aria-label="Creating new study group buttom"
+          className={styles.new_study_btn}
+        >
+          <Link href={"/study/new"}>
             <Image
-              src={`/studium-logo.png`}
-              alt={"Studium logo"}
-              width={60}
-              height={56}
-              className={styles.logo_img}
-              aria-hidden
-            />
-            <Image
-              src={`/studium-title.svg`}
-              alt={"Studium title"}
-              width={120}
+              src={"/icon/newstudy.svg"}
+              alt="Create new study"
+              width={38}
               height={40}
-              className={styles.logo_title}
               aria-hidden
             />
           </Link>
-        </div>
-        <nav aria-label="primary-nav" className={styles.gnb}>
-          <Link href={""}>스터디</Link>
-          <Link href={""}>템플릿</Link>
-          <Link href={""}>책갈피</Link>
-        </nav>
-        <div className={styles.profile_container}>
-          <button
-            aria-label="profile dropdown button"
-            className={styles.profile_btn}
-          >
-            <Image
-              src={"/icon/avatar.svg"}
-              alt="profile_icon"
-              width={44}
-              height={44}
-              aria-hidden
-            />
-          </button>
-        </div>
-      </header>
-      <main className={styles.contents_container}>{children}</main>
+        </button>
+        {children}
+      </main>
     </div>
   );
 }
