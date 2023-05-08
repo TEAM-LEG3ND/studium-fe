@@ -5,6 +5,7 @@ export const noto_sans_kr = Noto_Sans_KR({
   style: ["normal"],
   subsets: ["latin"],
   fallback: ["Arial", "Helvetica", "sans-serif"],
+  variable: "--font-noto-sans-kr",
 });
 
 export const source_sans_pro = Source_Sans_Pro({

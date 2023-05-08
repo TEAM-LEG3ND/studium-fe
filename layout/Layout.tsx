@@ -11,7 +11,7 @@ type LayoutProps = WithChildren<{}>;
 function Layout({ children }: LayoutProps) {
   return (
     <div
-      className={`${styles.root_container} ${noto_sans_kr.className} ${source_sans_pro.variable}`}
+      className={`${styles.root_container} ${noto_sans_kr.variable} ${source_sans_pro.variable}`}
     >
       <MainHeader />
       <main className={styles.contents_container}>
