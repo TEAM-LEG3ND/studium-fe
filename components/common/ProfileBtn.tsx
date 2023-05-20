@@ -2,10 +2,15 @@ import Image from "next/image";
 
 import styles from "@/styles/components/ProfileBtn.module.sass";
 
-function ProfileBtn() {
+type ProfileBtnProps = {
+  handleClick: () => void;
+};
+
+function ProfileBtn({ handleClick }: ProfileBtnProps) {
   return (
     <div className={styles.profile_container}>
       <button
+        onClick={handleClick}
         aria-label="profile dropdown button"
         className={styles.profile_btn}
       >
