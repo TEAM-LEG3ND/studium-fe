@@ -1,12 +1,16 @@
 @use "../abstracts/variables" as vars
 @use "../base/reset"
 @use "../base/_typography" as typo
+@use "../abstracts/_mixins" as mix
   
 * 
+  @include mix.noselect
+  
   box-sizing: border-box
 
 html
   font-size: typo.$size--16
+  color: vars.$color-black
 
 body
   min-block-size: 100vh

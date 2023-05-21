@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import styles from "@/styles/components/MainHeader.module.sass";
 import {
@@ -26,8 +26,8 @@ function MainHeader() {
           <Image
             src={`https://studium-fe.s3.ap-northeast-2.amazonaws.com/public/studium-logo.png`}
             alt={"Studium logo"}
-            width={60}
-            height={56}
+            width={45}
+            height={42}
             aria-hidden
             className={styles.logo_img}
           />

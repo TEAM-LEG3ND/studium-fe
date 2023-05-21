@@ -1,19 +1,20 @@
 @use "../abstracts/_variables" as vars
+@use "../base/_typography" as typo
   
 .submenu_container
   
   padding: 32px
   border-radius: 4px
   border: 1px solid vars.$color-offwhite
-  box-shadow: 0px 1px 2px vars.$color-gray-1
+  box-shadow: 0px 1px 1px vars.$color-gray-1
   background-color: vars.$color-white
   z-index: 1
   
 
 .profile_submenu_container
   position: absolute
-  top: 64px
-  right: 8px
+  top: 48px
+  right: 32px
   max-block-size: 720px
   overscroll-behavior-block: contain
 
@@ -34,8 +35,10 @@
 
 
 .submenu_btn
+  @include typo.text--14
+  
   min-inline-size: 24ch
-  padding-block: 12px
+  padding-block: 8px
   padding-inline: 12px
   border-radius: 12px
   transition-property: border background-color transform
