@@ -4,14 +4,14 @@ import styles from "@/styles/components/Modal.module.sass";
 import { modalType } from "@/types/modal";
 import { useModal } from "./hooks/useModal";
 
-interface ModalInfo {
+type ModalInfo = {
   type: modalType;
   showPrevBtn: boolean;
   showCancelBtn: boolean;
   contents: React.ReactNode;
 }
 
-const Modal: React.FC<ModalInfo> = ({ type, showPrevBtn, showCancelBtn, contents }) => {
+function Modal({ type, showPrevBtn, showCancelBtn, contents }: ModalInfo) {
   const { currentModalData, closeModal, movePrevModal } = useModal(type);
   return (
     <>
