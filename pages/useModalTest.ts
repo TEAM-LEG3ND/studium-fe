@@ -4,10 +4,9 @@ import { showModal } from "@/modules/modal";
 
 export const useModalTest = () => {
   const dispatch = useDispatch();
-  const type = 'login';
 
   const clickBtn = () => {
-    dispatch(showModal('login'))
+    dispatch(showModal('joinComplete'))
   }
 
   return {clickBtn}

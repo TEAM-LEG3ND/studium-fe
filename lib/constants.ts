@@ -1,0 +1,1 @@
+export const API_MEMBER = 'https://api.server.d0lim.com';

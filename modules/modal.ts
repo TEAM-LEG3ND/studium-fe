@@ -11,7 +11,7 @@ const initialState: modalState = {
         isShow: false,
         prevModal: '',
     },
-    joinCompelete: {
+    joinComplete: {
         isShow: false,
         prevModal: '',
     },
@@ -41,8 +41,8 @@ export const modalSlice = createSlice({
             const type = action.payload;
             state[type].isShow = false;
         },
-        nextModal(state, action: PayloadAction<{current: modalType, next: modalType, data: object}>) {
-            const {current, next, data} = action.payload;
+        nextModal(state, action: PayloadAction<{current: modalType, next: modalType}>) {
+            const {current, next} = action.payload;
             state[next].prevModal = current;
         },
 	},
