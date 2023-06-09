@@ -1,0 +1,60 @@
+@use "../base/_typography" as typo
+@use "../abstracts/_mixins" as mix
+@use "../abstracts/_variables" as vars
+  
+.study_item
+  min-inline-size: 224px
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+
+.study_item_metric
+  @include typo.text--14
+  @include typo.text--medium
+  
+  color: vars.$color-red
+
+
+.study_item_header
+  display: flex
+  justify-content: space-between
+
+  & h3
+    @include typo.text--20
+    @include typo.text--bold
+    @include mix.line-clamp--ellipsis(2)
+
+    max-inline-size: 216px
+    word-break: break-all
+
+
+.study_item_description
+  @include typo.text--16
+  @include typo.text--regular
+  @include mix.line-clamp--ellipsis(3)
+  
+  color: vars.$color-gray-4
+  word-break: break-all
+  
+
+.study_item_tag_list
+  overflow-inline: hidden
+
+  display: flex
+  gap: 4px
+  
+
+.study_item_tag
+  @include typo.text--12
+  @include typo.text--regular
+
+  border-radius: 16px
+  background-color: vars.$color-violet
+  color: vars.$color-white
+
+  & > a
+    display: block
+    padding-block: 4px
+    padding-inline: 12px
+    
