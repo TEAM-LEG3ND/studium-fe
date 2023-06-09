@@ -46,7 +46,29 @@ export default function Home() {
         <meta name="description" content="User interactive study platform" />
         <meta name="theme-color" content="" />
       </Head>
-      <section></section>
+      <section>
+        <div className={styles.recommends_container}>
+          <header>
+            <h2 className={styles.recommends_title}>{`현재 뜨는 스터디`}</h2>
+          </header>
+          <div className={styles.recommends_content}>
+            <Carousel showSwiper={true}>
+              {data.popular_recruit_articles.map(
+                ({ id, title, description, tags, metric }) => (
+                  <Carousel.Item key={id}>
+                    <RecruitItem.Container>
+                      <RecruitItem.Metric metric={metric} />
+                      <RecruitItem.Header title={title} />
+                      <RecruitItem.Description description={description} />
+                      <RecruitItem.Tags tags={tags} />
+                    </RecruitItem.Container>
+                  </Carousel.Item>
+                )
+              )}
+            </Carousel>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
