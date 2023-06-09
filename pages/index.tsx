@@ -69,6 +69,29 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className={styles.recommends_container}>
+        <header>
+          <h2 className={styles.recommends_title}>
+            {"당신의 스터디, Studium이 응원합니다."}
+          </h2>
+        </header>
+        <div>
+          <ul className={styles.recruit_articles_container}>
+            {data.recruit_articles.map(
+              ({ id, title, description, tags, metric }) => (
+                <li key={id}>
+                  <RecruitItem.Container>
+                    <RecruitItem.Metric metric={metric} />
+                    <RecruitItem.Header title={title} />
+                    <RecruitItem.Description description={description} />
+                    <RecruitItem.Tags tags={tags} />
+                  </RecruitItem.Container>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      </section>
     </>
   );
 }
