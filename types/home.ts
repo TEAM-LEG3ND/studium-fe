@@ -12,7 +12,7 @@ export type RecruitArticlesResponse = {
   last_recruit_article_id: number;
 };
 
-type HomeRecruitArticleResponse = {
+export type HomeRecruitArticleResponse = {
   id: number;
   title: string;
   description: string;
