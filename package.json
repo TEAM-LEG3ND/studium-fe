@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "initMock": "npx msw init public/ --save"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -27,5 +28,8 @@
     "@types/react-redux": "^7.1.25",
     "msw": "^1.2.2",
     "sass": "^1.60.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
