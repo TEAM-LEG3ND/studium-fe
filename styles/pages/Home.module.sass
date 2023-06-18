@@ -11,7 +11,13 @@
   
   & > div
     margin-top: 8px
-  
+
+
+.recommends_content
+  & > .caoursel_snap
+    min-inline-size: 224px
+
+
 .recommends_title
   @include typo.text--24
   @include typo.text--bold
@@ -24,5 +30,27 @@
   padding-block: 16px
 
   display: grid
-  grid-template-columns: repeat(auto-fill, minmax(224px, 1fr))
+  grid-template-columns: repeat(auto-fill, minmax(309px, 1fr))
   gap: 32px
+
+  & > li
+    min-inline-size: 309px
+
+
+.recommends_header
+  display: flex
+  justify-content: space-between
+
+
+.sort_wrapper
+  position: relative
+
+
+.sort_btn
+  @include typo.text--16
+  @include typo.text--medium
+  
+
+.sort_menu
+  position: absolute
+  

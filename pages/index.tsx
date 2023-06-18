@@ -2,40 +2,21 @@ import Head from "next/head";
 
 import Carousel from "@/components/common/carousel/Carousel";
 import RecruitItem from "@/components/home/RecruitItem";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { factory } from "@/factories/homeFactory";
+import { HomeData } from "@/types/home";
+import RecruitItemListSection from "@/components/home/RecruitItemListSection";
 
-export type RecruitItem = {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
-  metric: string;
+export const getServerSideProps: GetServerSideProps<{
+  data: HomeData;
+}> = async () => {
+  const data = await factory.init();
+  return { props: { data } };
 };
 
-export type HomeData = {
-  popular_recruit_articles: RecruitItem[];
-  recruit_articles: RecruitItem[];
-  last_recruit_article_id: number;
-};
-
-const createRecruitItem = (count: number) =>
-  Array.from({ length: count }, (v, i) => i + 1).map((v) => ({
-    id: v,
-    title: `스프링 기초 스터디 ${v}`,
-    description:
-      "스프링 6 버전에서 새로 도입된 개념과 스프링 프레임워크의 핵심 요소들을 공부합니다.",
-    tags: ["BE", "Spring"],
-    metric: "마감일 2일 17시간 남음",
-  }));
-
-export default function Home() {
-  const recruitArticleListData = createRecruitItem(100);
-  const popularRecruitArticleData = createRecruitItem(12);
-
-  const data: HomeData = {
-    popular_recruit_articles: popularRecruitArticleData,
-    recruit_articles: recruitArticleListData,
-    last_recruit_article_id: 100,
-  };
+export default function Home({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Head>
@@ -56,10 +37,10 @@ export default function Home() {
           <div className={styles.recommends_content}>
             <Carousel showSwiper={true}>
               {data.popular_recruit_articles.map(
-                ({ id, title, description, tags, metric }) => (
+                ({ id, title, description, tags, announcement }) => (
                   <Carousel.Item key={id}>
                     <RecruitItem.Container>
-                      <RecruitItem.Metric metric={metric} />
+                      <RecruitItem.Metric metric={announcement} />
                       <RecruitItem.Header title={title} />
                       <RecruitItem.Description description={description} />
                       <RecruitItem.Tags tags={tags} />
@@ -71,6 +52,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 6711bab (Create popular recruit article list component with carousel in main page)
 =======
@@ -98,6 +80,9 @@ export default function Home() {
         </div>
       </section>
 >>>>>>> a27d222 (Create recruit article list component with grid layout in main page)
+=======
+      <RecruitItemListSection recruitArticles={data.recruit_articles} />
+>>>>>>> a8f812d (Apply infinite scroll to RecruitItemList component)
     </>
   );
 }
