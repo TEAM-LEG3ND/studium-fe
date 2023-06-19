@@ -11,15 +11,15 @@ type LayoutProps = WithChildren<object>;
 function Layout({ children }: LayoutProps) {
   return (
     <div
-      className={`${styles.root_container} ${notoSansKr.variable} ${sourceSansPro.variable}`}
+      className={`${styles.rootContainer} ${notoSansKr.variable} ${sourceSansPro.variable}`}
     >
       <MainHeader />
-      <main className={styles.contents_container}>
+      <main className={styles.contentsContainer}>
         <button
           type="button"
           tabIndex={-1}
           aria-label="Creating new study group buttom"
-          className={styles.new_study_btn}
+          className={styles.newStudyBtn}
         >
           <Link href="/study/new">
             <Image

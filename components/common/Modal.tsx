@@ -1,6 +1,6 @@
 import styles from "@/styles/components/Modal.module.sass";
 import { ModalType } from "@/types/modal";
-import { useModal } from "./hooks/useModal";
+import useModal from "./hooks/useModal";
 
 type ModalInfo = {
   type: ModalType;
@@ -11,43 +11,41 @@ type ModalInfo = {
 
 function Modal({ type, showPrevBtn, showCancelBtn, contents }: ModalInfo) {
   const { currentModalData, closeModal, movePrevModal } = useModal(type);
-  return (
-    currentModalData.isShow && (
+  return currentModalData.isShow ? (
+    <div
+      role="presentation"
+      className={styles.modalBackground}
+      onClick={closeModal}
+    >
       <div
         role="presentation"
-        className={styles.modal_background}
-        onClick={closeModal}
+        className={styles.modalArea}
+        onClick={e => {
+          e.stopPropagation();
+        }}
       >
-        <div
-          role="presentation"
-          className={styles.modal_area}
-          onClick={e => {
-            e.stopPropagation();
-          }}
-        >
-          {showPrevBtn && currentModalData.prevModal && (
-            <button
-              type="button"
-              className={styles.modal_prev}
-              onClick={movePrevModal}
-            >
-              {"<-"}
-            </button>
-          )}
-          {showCancelBtn && (
-            <button
-              type="button"
-              className={styles.modal_cancel}
-              onClick={closeModal}
-            >
-              x
-            </button>
-          )}
-          <div>{contents}</div>
-        </div>
+        {showPrevBtn && currentModalData.prevModal && (
+          <button
+            type="button"
+            className={styles.modalPrev}
+            onClick={movePrevModal}
+          >
+            {"<-"}
+          </button>
+        )}
+        {showCancelBtn && (
+          <button
+            type="button"
+            className={styles.modalCancel}
+            onClick={closeModal}
+          >
+            x
+          </button>
+        )}
+        <div>{contents}</div>
       </div>
-    )
-  );
+    </div>
+  ) : null;
 }
 
 export default Modal;
