@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import RecruitItem from "./RecruitItem";
+import { useEffect, useRef } from "react";
 import styles from "@/styles/pages/Home.module.sass";
-import { RecruitArticle, SortBy } from "@/types/home";
-import { factory } from "@/factories/homeFactory";
+import { RecruitArticle } from "@/types/home";
+import factory from "@/factories/homeFactory";
+import RecruitItem from "./RecruitItem";
 
 type RecruitItemListProps = {
   recruitArticles: RecruitArticle[];
@@ -20,15 +20,14 @@ function RecruitItemList({
     if (observableRef.current === null) return;
 
     const intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(async (entry) => {
+      entries => {
+        entries.forEach(async entry => {
           if (entry.isIntersecting) {
-            console.log("intersecting!!");
             const { recruit_articles: articles } =
               await factory.additionalArticle(
                 100,
                 recruitArticles.at(-1)?.id,
-                sortType
+                sortType,
               );
             if (articles.length === 0) {
               intersectionObserver.unobserve(entry.target);
@@ -40,19 +39,20 @@ function RecruitItemList({
       },
       {
         threshold: 0.01,
-      }
+      },
     );
     intersectionObserver.observe(observableRef.current);
 
+    // eslint-disable-next-line consistent-return
     return () => intersectionObserver.disconnect();
   }, [recruitArticles, handleRecruitArticles, sortType]);
 
   return (
-    <ul className={styles.recruit_articles_container}>
+    <ul className={styles.recruitArticlesContainer}>
       {recruitArticles.map(({ id, title, description, tags, announcement }) => (
         <li
           key={id}
-          ref={(node) => {
+          ref={node => {
             if (node && id === recruitArticles.at(-1)?.id) {
               observableRef.current = node;
             }
@@ -60,8 +60,8 @@ function RecruitItemList({
         >
           <RecruitItem.Container>
             <RecruitItem.Metric metric={announcement} />
-            <RecruitItem.Header title={title} />
-            <RecruitItem.Description description={description} />
+            <RecruitItem.Header id={id} title={title} />
+            <RecruitItem.Description id={id} description={description} />
             <RecruitItem.Tags tags={tags} />
           </RecruitItem.Container>
         </li>

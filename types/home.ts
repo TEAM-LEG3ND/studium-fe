@@ -16,7 +16,7 @@ type HomeRecruitArticleResponse = {
   id: number;
   title: string;
   description: string;
-  tags: string[];
+  tags: Tag[];
   created_at: Date;
   expires_at: Date;
 };
@@ -38,8 +38,13 @@ export type RecruitArticle = {
   id: number;
   title: string;
   description: string;
-  tags: string[];
+  tags: Tag[];
   announcement: string;
 };
 
-export type SortBy = "최신순" | "추천순";
+export type SortBy = "최신순" | "추천순" | "인기순";
+
+export type Tag = {
+  id: number;
+  name: string;
+};

@@ -2,13 +2,17 @@ import styles from "@/styles/components/RecruitItem.module.sass";
 import Link from "next/link";
 
 type RecruitItemDescriptionProps = {
+  id: number;
   description: string;
 };
 
-function RecruitItemDescription({ description }: RecruitItemDescriptionProps) {
+function RecruitItemDescription({
+  id,
+  description,
+}: RecruitItemDescriptionProps) {
   return (
-    <Link href={""}>
-      <p className={styles.study_item_description}>{description}</p>
+    <Link href={`/study/${id}`}>
+      <p className={styles.studyItemDescription}>{description}</p>
     </Link>
   );
 }

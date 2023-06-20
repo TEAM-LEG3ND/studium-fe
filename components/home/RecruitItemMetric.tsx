@@ -5,7 +5,7 @@ type RecruitItemMetricProps = {
 };
 
 function RecruitItemMetric({ metric }: RecruitItemMetricProps) {
-  return <small className={styles.study_item_metric}>{metric}</small>;
+  return <small className={styles.studyItemMetric}>{metric}</small>;
 }
 
 export default RecruitItemMetric;

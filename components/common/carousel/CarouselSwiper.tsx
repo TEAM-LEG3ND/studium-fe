@@ -3,11 +3,11 @@ import styles from "@/styles/components/Carousel.module.sass";
 function CarouselSwiper() {
   const onClickNextBtn = () => {
     const carouselSnaps = Array.from(
-      document.getElementsByClassName(styles.carousel_snap)
+      document.getElementsByClassName(styles.carouselSnap),
     );
     const nextFirstIndex =
       carouselSnaps
-        .map((el) => el.classList.contains("carousel_item_inview"))
+        .map(el => el.classList.contains("carouselItemInView"))
         .lastIndexOf(true) + 1;
     if (nextFirstIndex < carouselSnaps.length)
       carouselSnaps[nextFirstIndex].scrollIntoView({
@@ -18,11 +18,11 @@ function CarouselSwiper() {
 
   const onClickPrevBtn = () => {
     const carouselSnaps = Array.from(
-      document.getElementsByClassName(styles.carousel_snap)
+      document.getElementsByClassName(styles.carouselSnap),
     );
     const prevFirstIndex =
       carouselSnaps
-        .map((el) => el.classList.contains("carousel_item_inview"))
+        .map(el => el.classList.contains("carouselItemInView"))
         .indexOf(true) - 1;
     if (prevFirstIndex >= 0)
       carouselSnaps[prevFirstIndex].scrollIntoView({
@@ -32,11 +32,12 @@ function CarouselSwiper() {
   };
 
   return (
-    <div className={styles.carousel_control}>
+    <div className={styles.carouselControl}>
       <button
+        type="button"
         data-swipe-direction="left"
         onClick={onClickPrevBtn}
-        className={styles.carousel_swipe}
+        className={styles.carouselSwipe}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,9 +52,10 @@ function CarouselSwiper() {
         </svg>
       </button>
       <button
+        type="button"
         data-swipe-direction="right"
         onClick={onClickNextBtn}
-        className={styles.carousel_swipe}
+        className={styles.carouselSwipe}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,7 @@
 @use "../base/_typography" as typo
 @use "../abstracts/_mixins" as mix
 
-.recommends_container
+.recommendsContainer
   padding-block: 32px
   
   & > header
@@ -13,20 +13,20 @@
     margin-top: 8px
 
 
-.recommends_content
+.recommendsContent
   & > .caoursel_snap
     min-inline-size: 224px
 
 
-.recommends_title
+.recommendsTitle
   @include typo.text--24
   @include typo.text--bold
-  @include mix.line-clamp--ellipsis(2)
+  @include mix.lineClampEllipsis(2)
   
   max-inline-size: 480px
 
   
-.recruit_articles_container
+.recruitArticlesContainer
   padding-block: 16px
 
   display: grid
@@ -37,20 +37,20 @@
     min-inline-size: 309px
 
 
-.recommends_header
+.recommendsHeader
   display: flex
   justify-content: space-between
 
 
-.sort_wrapper
+.sortWrapper
   position: relative
 
 
-.sort_btn
+.sortBtn
   @include typo.text--16
   @include typo.text--medium
   
 
-.sort_menu
+.sortMenu
   position: absolute
   

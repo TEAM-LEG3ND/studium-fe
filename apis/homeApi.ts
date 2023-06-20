@@ -1,14 +1,23 @@
-import fetchData from "@/utils/util-func";
-import studium from "./paths";
+// import fetchData from "@/utils/util-func";
 import { HomeResponse, RecruitArticlesResponse } from "@/types/home";
+// import studium from "./paths";
 
 const createRecruitItem = (count: number) =>
-  Array.from({ length: count }, (v, i) => i + 1).map((v) => ({
+  Array.from({ length: count }, (v, i) => i + 1).map(v => ({
     id: v,
     title: `스프링 기초 스터디 ${v}`,
     description:
       "스프링 6 버전에서 새로 도입된 개념과 스프링 프레임워크의 핵심 요소들을 공부합니다.",
-    tags: ["BE", "Spring"],
+    tags: [
+      {
+        id: 1,
+        name: "BE",
+      },
+      {
+        id: 2,
+        name: "Spring",
+      },
+    ],
     created_at: new Date(),
     expires_at: new Date(),
   }));
@@ -29,7 +38,7 @@ export const getHomeResponseData = async (): Promise<HomeResponse> => {
 export const getRecruitArticlesResponseData = async (
   size: number,
   lastArticleId: number,
-  sort: string
+  sort: string,
 ): Promise<RecruitArticlesResponse> => {
   // const articlesData = await fetchData(
   //   studium.home.articles(size, lastArticleId, sort)
@@ -39,18 +48,17 @@ export const getRecruitArticlesResponseData = async (
     const articlesData = {
       recruit_articles: recruitArticleListData.slice(
         lastArticleId,
-        lastArticleId + size
+        lastArticleId + size,
       ),
       last_recruit_article_id: lastArticleId + size,
     };
     return articlesData;
-  } else {
-    const articlesData = {
-      recruit_articles: recruitArticleListData
-        .toReversed()
-        .slice(lastArticleId, lastArticleId + size),
-      last_recruit_article_id: lastArticleId + size,
-    };
-    return articlesData;
   }
+  const articlesData = {
+    recruit_articles: recruitArticleListData
+      .toReversed()
+      .slice(lastArticleId, lastArticleId + size),
+    last_recruit_article_id: lastArticleId + size,
+  };
+  return articlesData;
 };

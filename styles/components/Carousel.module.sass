@@ -8,8 +8,8 @@
   display: grid
   grid-template-columns: $carousel-gutter-size [scroller-start] 1fr [scroller-end] $carousel-gutter-size
 
-.carousel_scroller
-  @include mix.scrollbar-hide
+.carouselScroller
+  @include mix.scrollbarHide
 
   grid-row: 1/-1
   grid-column: 1/-1
@@ -23,19 +23,19 @@
   gap: 32px
   
 
-.carousel_snap 
+.carouselSnap 
   scroll-snap-align: start
 
 
-.carousel_control
+.carouselControl
   display: contents
 
-  & > .carousel_swipe 
+  & > .carouselSwipe 
     &:not([disabled="true"]):active 
       transform: scale(.95)
     
   
-.carousel_swipe
+.carouselSwipe
   $shadow-size: 1px
   $shadow-highlight-light: hsl(0 0% 50% / 10%)
   $shadow-highlight: $shadow-highlight-light
@@ -94,3 +94,4 @@
     transform: translateX($x) scale(.95)
     transition: transform .5s vars.$ease-squish-3
     transform-origin: center center
+ 

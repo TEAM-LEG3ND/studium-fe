@@ -1,17 +1,18 @@
 import Link from "next/link";
 
 import styles from "@/styles/components/RecruitItem.module.sass";
+import { Tag } from "@/types/home";
 
 type RecruitItemTagsProps = {
-  tags: string[];
+  tags: Tag[];
 };
 
 function RecruitItemTags({ tags }: RecruitItemTagsProps) {
   return (
-    <div className={styles.study_item_tag_list}>
-      {tags.map((tag, i) => (
-        <div key={i} className={styles.study_item_tag}>
-          <Link href={""}>{tag}</Link>
+    <div className={styles.studyItemTagList}>
+      {tags.map(({ id, name }) => (
+        <div key={id} className={styles.studyItemTag}>
+          <Link href={`/tag/${id}`}>{name}</Link>
         </div>
       ))}
     </div>
