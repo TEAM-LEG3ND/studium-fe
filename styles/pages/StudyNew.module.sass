@@ -1,0 +1,147 @@
+@use "../base/_typography" as typo
+@use "../abstracts/_variables" as vars
+
+.mainContainer
+    display: flex
+    flex-direction: column
+    width: 100vw
+
+.headerContainer
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: flex-end
+    padding: 0px
+    gap: 15px
+    margin-right: 40px
+    margin-top: 26px
+
+
+.submitButton
+    position: relative
+    width: 112px
+    height: 44px
+    background: #34A853
+    border-radius: 13px
+    text-align: center
+    color: #FFFFFF
+    font-weight: typo.$weight--semibold
+    font-size: typo.$size--18
+    line-height: 28px
+
+
+.titleContainer
+    display: flex
+    align-items: center
+    justify-content: center
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 600
+    font-size: 40px
+    line-height: 50px
+    text-align: center
+    letter-spacing: -0.02em
+    color: #101828
+
+.formContainer
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    justify-content: center
+    padding: 0px
+    gap: 20px
+    margin-top: 85px
+    margin-left: auto
+    margin-right: auto
+    width: 80vw
+    max-width: 800px
+
+    div
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        padding: 0px
+        gap: 8px
+        font-style: normal
+        font-weight: 700
+        font-size: 18px
+        line-height: 18px
+        color: #000000
+
+
+    input[type="text"], input[type="number"], 
+    .addInputBox, .template
+        display: flex
+        flex-direction: row
+        align-items: center
+        padding: 10px 14px
+        gap: 8px
+        width: 80vw
+        max-width: 800px
+        height: 48px
+        background: #FFFFFF
+        border: 1px solid #D0D5DD
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05)
+        border-radius: 8px
+        font-weight: 400
+        font-size: 16px
+
+    .template
+        height: 300px
+        justify-content: center
+
+    .addInputBox
+        background: #EEEEEE
+        justify-content: center
+
+    input[type="number"]
+        width: 20vw
+
+    .withConstraintForm
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
+        padding: 0px
+        gap: 8px
+
+        .maxCountText
+            font-style: normal
+            font-weight: 400
+            font-size: 14px
+            line-height: 19px
+
+    .studyPlaceForm
+        display: flex
+        flex-direction: row
+        align-items: center
+        padding: 0px
+        gap: 16px
+
+        .studyPlaceRadioConainer
+            display: flex
+            flex-direction: row
+            align-items: flex-start
+            padding: 0px
+            gap: 8px
+            font-style: normal
+            font-weight: 500
+            font-size: 16px
+            line-height: 19px
+        
+            label
+                display: flex
+                gap: 0.4rem
+
+        input[type="text"]
+            width: 25vw
+
+    .columnFlexForm
+        dlsplay: flex
+        flex-direction: row
+        width: 100%
+        justify-content: space-between
+
+
+
+
