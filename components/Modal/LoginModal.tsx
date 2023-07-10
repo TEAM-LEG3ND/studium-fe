@@ -5,8 +5,8 @@ import useLoginModal from "./hooks/useLoginModal";
 import Modal from "../common/Modal";
 
 function LoginModal() {
-  const { login } = useLoginModal();
-  const loginDom = (<button onClick={() => login()}>Sign in with Google🚀</button>)
+  const { googleLogin } = useLoginModal();
+  const loginDom = (<button onClick={() => googleLogin()}>Sign in with Google🚀</button>)
   return (
     <Modal type='login' showCancelBtn showPrevBtn={false} contents={loginDom}/>
   );

@@ -35,10 +35,10 @@ export default function useLoginModal() {
         console.log('Login Failed');
     }
 
-    const login = useGoogleLogin({onSuccess, onError});
+    const googleLogin = useGoogleLogin({onSuccess, onError});
 
     const state = {};
-    const handler = { login };
+    const handler = { googleLogin };
 
     return { ...state, ...handler }
 }
