@@ -43,7 +43,9 @@ function RecruitItemList({
     intersectionObserver.observe(observableRef.current);
 
     // eslint-disable-next-line consistent-return
-    return () => intersectionObserver.disconnect();
+    return () => {
+      intersectionObserver.disconnect();
+    };
   }, [recruitArticles, handleRecruitArticles, sortType]);
 
   return (
