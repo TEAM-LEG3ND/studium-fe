@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import styles from "@/styles/pages/Home.module.sass";
 import { RecruitArticle } from "@/types/home";
-import factory from "@/factories/homeFactory";
+import { getRecruitArticles } from "@/factories/homeFactory";
 import RecruitItem from "./RecruitItem";
 
 type RecruitItemListProps = {
@@ -23,12 +23,11 @@ function RecruitItemList({
       entries => {
         entries.forEach(async entry => {
           if (entry.isIntersecting) {
-            const { recruit_articles: articles } =
-              await factory.additionalArticle(
-                100,
-                recruitArticles.at(-1)!.id,
-                sortType,
-              );
+            const { recruit_articles: articles } = await getRecruitArticles(
+              100,
+              recruitArticles.at(-1)!.id,
+              sortType,
+            );
             if (articles.length === 0) {
               intersectionObserver.unobserve(entry.target);
             } else {

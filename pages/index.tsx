@@ -4,14 +4,14 @@ import styles from "@/styles/pages/Home.module.sass";
 import Carousel from "@/components/common/carousel/Carousel";
 import RecruitItem from "@/components/home/RecruitItem";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import factory from "@/factories/homeFactory";
+import { getHomePageData } from "@/factories/homeFactory";
 import { HomeData } from "@/types/home";
 import RecruitItemListSection from "@/components/home/RecruitItemListSection";
 
 export const getServerSideProps: GetServerSideProps<{
   data: HomeData;
 }> = async () => {
-  const data = await factory.init();
+  const data = await getHomePageData();
   return { props: { data } };
 };
 
