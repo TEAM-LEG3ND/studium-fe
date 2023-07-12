@@ -2,20 +2,20 @@ import { useState } from "react";
 
 import styles from "@/styles/pages/Home.module.sass";
 import RecruitItemList from "@/components/home/RecruitItemList";
-import { RecruitArticle, SortBy } from "@/types/study";
-import { getRecruitArticles } from "@/factories/homeFactory";
+import { StudyOverview, SortBy } from "@/types/study";
+import { getStudyOverviews } from "@/factories/homeFactory";
 
 type RecruitItemListSectionProps = {
-  recruitArticles: RecruitArticle[];
+  studyOverviews: StudyOverview[];
 };
 
 function RecruitItemListSection({
-  recruitArticles,
+  studyOverviews,
 }: RecruitItemListSectionProps) {
   const sortTypes: SortBy[] = ["최신순", "추천순", "인기순"];
   const [sortType, setSortType] = useState("최신순");
   const [expanded, setExpanded] = useState(false);
-  const [recruitItemList, setRecruitItemList] = useState(recruitArticles);
+  const [recruitItemList, setRecruitItemList] = useState(studyOverviews);
 
   const handleSortBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -26,11 +26,11 @@ function RecruitItemListSection({
     e.stopPropagation();
     setExpanded(!expanded);
     setSortType(e.currentTarget.value);
-    const articles = await getRecruitArticles(100, 0, e.currentTarget.value);
-    setRecruitItemList(articles.recruitArticles);
+    const overviews = await getStudyOverviews(100, 0, e.currentTarget.value);
+    setRecruitItemList(overviews.studyOverviews);
   };
 
-  const handleRecruitItemList = (articles: RecruitArticle[]) => {
+  const handleRecruitItemList = (articles: StudyOverview[]) => {
     setRecruitItemList(recruitItemList.concat(articles));
   };
 
@@ -70,9 +70,9 @@ function RecruitItemListSection({
       </header>
       <div>
         <RecruitItemList
-          recruitArticles={recruitItemList}
+          studyOverviews={recruitItemList}
           sortType={sortType}
-          handleRecruitArticles={handleRecruitItemList}
+          handleStudyOverviews={handleRecruitItemList}
         />
       </div>
     </section>

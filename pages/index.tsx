@@ -34,7 +34,7 @@ export default function Home({
           </header>
           <div className={styles.recommendsContent}>
             <Carousel showSwiper>
-              {data.popularRecruitArticles.map(
+              {data.popularStudyOverviews.map(
                 ({ id, title, description, tags, announcement }) => (
                   <Carousel.Item key={id}>
                     <RecruitItem.Container>
@@ -53,7 +53,7 @@ export default function Home({
           </div>
         </div>
       </section>
-      <RecruitItemListSection recruitArticles={data.recruitArticles} />
+      <RecruitItemListSection studyOverviews={data.studyOverviews} />
     </>
   );
 }

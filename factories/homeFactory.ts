@@ -6,14 +6,14 @@ import {
 export const getHomePageData = async () => {
   const { popularRecruitArticles: popularArticles, recruitArticles: articles } =
     await getHomeResponseData();
-  const resolvedPopularArticles = popularArticles.map(article => ({
+  const resolvedPopularOverviews = popularArticles.map(article => ({
     id: article.id,
     title: article.title,
     description: article.description,
     tags: article.tags,
     announcement: "마감일 2일 17시간 남음",
   }));
-  const resolvedArticles = articles.map(article => ({
+  const resolvedOverviews = articles.map(article => ({
     id: article.id,
     title: article.title,
     description: article.description,
@@ -22,22 +22,22 @@ export const getHomePageData = async () => {
   }));
 
   return {
-    popularRecruitArticles: resolvedPopularArticles,
-    recruitArticles: resolvedArticles,
+    popularStudyOverviews: resolvedPopularOverviews,
+    studyOverviews: resolvedOverviews,
   };
 };
 
-export const getRecruitArticles = async (
+export const getStudyOverviews = async (
   size: number,
-  lastArticleId: number,
+  lastOverviewId: number,
   sort: string,
 ) => {
   const { recruitArticles: articles } = await getRecruitArticlesResponseData(
     size,
-    lastArticleId,
+    lastOverviewId,
     sort,
   );
-  const resolvedArticles = articles.map(article => ({
+  const resolvedOverviews = articles.map(article => ({
     id: article.id,
     title: article.title,
     description: article.description,
@@ -46,6 +46,6 @@ export const getRecruitArticles = async (
   }));
 
   return {
-    recruitArticles: resolvedArticles,
+    studyOverviews: resolvedOverviews,
   };
 };

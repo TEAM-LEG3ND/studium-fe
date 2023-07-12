@@ -1,15 +1,15 @@
 // 최초 홈 화면 뷰 데이터
 export type HomePage = {
-  popularRecruitArticles: RecruitArticle[];
-} & RecruitArticles;
+  popularStudyOverviews: StudyOverview[];
+} & StudyOverviews;
 
 // 추가 게시글 데이터
-export type RecruitArticles = {
-  recruitArticles: RecruitArticle[];
+export type StudyOverviews = {
+  studyOverviews: StudyOverview[];
 };
 
 // 홈 화면 게시글
-export type RecruitArticle = {
+export type StudyOverview = {
   id: number;
   title: string;
   description: string;

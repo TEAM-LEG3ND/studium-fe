@@ -1,19 +1,19 @@
 import { useEffect, useRef } from "react";
 import styles from "@/styles/pages/Home.module.sass";
-import { RecruitArticle } from "@/types/study";
-import { getRecruitArticles } from "@/factories/homeFactory";
+import { StudyOverview } from "@/types/study";
+import { getStudyOverviews } from "@/factories/homeFactory";
 import RecruitItem from "./RecruitItem";
 
 type RecruitItemListProps = {
-  recruitArticles: RecruitArticle[];
+  studyOverviews: StudyOverview[];
   sortType: string;
-  handleRecruitArticles: (articles: RecruitArticle[]) => void;
+  handleStudyOverviews: (overviews: StudyOverview[]) => void;
 };
 
 function RecruitItemList({
-  recruitArticles,
+  studyOverviews,
   sortType,
-  handleRecruitArticles,
+  handleStudyOverviews,
 }: RecruitItemListProps) {
   const observableRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
@@ -23,15 +23,15 @@ function RecruitItemList({
       entries => {
         entries.forEach(async entry => {
           if (entry.isIntersecting) {
-            const { recruitArticles: articles } = await getRecruitArticles(
+            const { studyOverviews: overviews } = await getStudyOverviews(
               100,
-              recruitArticles.at(-1)!.id,
+              studyOverviews.at(-1)!.id,
               sortType,
             );
-            if (articles.length === 0) {
+            if (overviews.length === 0) {
               intersectionObserver.unobserve(entry.target);
             } else {
-              handleRecruitArticles(articles);
+              handleStudyOverviews(overviews);
             }
           }
         });
@@ -45,15 +45,15 @@ function RecruitItemList({
     return () => {
       intersectionObserver.disconnect();
     };
-  }, [recruitArticles, handleRecruitArticles, sortType]);
+  }, [studyOverviews, handleStudyOverviews, sortType]);
 
   return (
     <ul className={styles.recruitArticlesContainer}>
-      {recruitArticles.map(({ id, title, description, tags, announcement }) => (
+      {studyOverviews.map(({ id, title, description, tags, announcement }) => (
         <li
           key={id}
           ref={node => {
-            if (node && id === recruitArticles.at(-1)?.id) {
+            if (node && id === studyOverviews.at(-1)?.id) {
               observableRef.current = node;
             }
           }}

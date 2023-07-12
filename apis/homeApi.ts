@@ -1,6 +1,8 @@
 // import fetchData from "@/utils/util-func";
 // import studium from "./paths";
 
+import { Tag } from "@/types/study";
+
 // 최초 홈 진입 통 API
 // https://api.server.d0lim.com/studium/v1/home
 
