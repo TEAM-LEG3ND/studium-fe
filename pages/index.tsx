@@ -5,11 +5,11 @@ import Carousel from "@/components/common/carousel/Carousel";
 import RecruitItem from "@/components/home/RecruitItem";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { getHomePageData } from "@/factories/homeFactory";
-import { HomeData } from "@/types/home";
+import { HomePage } from "@/types/home";
 import RecruitItemListSection from "@/components/home/RecruitItemListSection";
 
 export const getServerSideProps: GetServerSideProps<{
-  data: HomeData;
+  data: HomePage;
 }> = async () => {
   const data = await getHomePageData();
   return { props: { data } };

@@ -1,5 +1,5 @@
 // 최초 홈 화면 뷰 데이터
-export type HomeData = {
+export type HomePage = {
   popularRecruitArticles: RecruitArticle[];
 } & RecruitArticles;
 
