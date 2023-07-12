@@ -18,8 +18,8 @@ const createRecruitItem = (count: number) =>
         name: "Spring",
       },
     ],
-    created_at: new Date(),
-    expires_at: new Date(),
+    createdAt: new Date(),
+    expiresAt: new Date(),
   }));
 
 const recruitArticleListData = createRecruitItem(500);
@@ -28,9 +28,9 @@ const popularRecruitArticleData = createRecruitItem(12);
 export const getHomeResponseData = async (): Promise<HomeResponse> => {
   // const homeData = await fetchData(studium.home.base());
   const homeData = {
-    popular_recruit_articles: popularRecruitArticleData,
-    recruit_articles: recruitArticleListData.slice(0, 100),
-    last_recruit_article_id: 100,
+    popularRecruitArticles: popularRecruitArticleData,
+    recruitArticles: recruitArticleListData.slice(0, 100),
+    lastRecruitArticleId: 100,
   };
   return homeData;
 };
@@ -46,11 +46,11 @@ export const getRecruitArticlesResponseData = async (
   // );
 
   const articlesData = {
-    recruit_articles: recruitArticleListData.slice(
+    recruitArticles: recruitArticleListData.slice(
       lastArticleId,
       lastArticleId + size,
     ),
-    last_recruit_article_id: lastArticleId + size,
+    lastRecruitArticleId: lastArticleId + size,
   };
   return articlesData;
 };

@@ -4,10 +4,8 @@ import {
 } from "@/apis/homeApi";
 
 export const getHomePageData = async () => {
-  const {
-    popular_recruit_articles: popularArticles,
-    recruit_articles: articles,
-  } = await getHomeResponseData();
+  const { popularRecruitArticles: popularArticles, recruitArticles: articles } =
+    await getHomeResponseData();
   const resolvedPopularArticles = popularArticles.map(article => ({
     id: article.id,
     title: article.title,
@@ -24,8 +22,8 @@ export const getHomePageData = async () => {
   }));
 
   return {
-    popular_recruit_articles: resolvedPopularArticles,
-    recruit_articles: resolvedArticles,
+    popularRecruitArticles: resolvedPopularArticles,
+    recruitArticles: resolvedArticles,
   };
 };
 
@@ -34,7 +32,7 @@ export const getRecruitArticles = async (
   lastArticleId: number,
   sort: string,
 ) => {
-  const { recruit_articles: articles } = await getRecruitArticlesResponseData(
+  const { recruitArticles: articles } = await getRecruitArticlesResponseData(
     size,
     lastArticleId,
     sort,
@@ -48,6 +46,6 @@ export const getRecruitArticles = async (
   }));
 
   return {
-    recruit_articles: resolvedArticles,
+    recruitArticles: resolvedArticles,
   };
 };

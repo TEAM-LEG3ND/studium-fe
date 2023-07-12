@@ -23,7 +23,7 @@ function RecruitItemList({
       entries => {
         entries.forEach(async entry => {
           if (entry.isIntersecting) {
-            const { recruit_articles: articles } = await getRecruitArticles(
+            const { recruitArticles: articles } = await getRecruitArticles(
               100,
               recruitArticles.at(-1)!.id,
               sortType,
@@ -42,7 +42,6 @@ function RecruitItemList({
     );
     intersectionObserver.observe(observableRef.current);
 
-    // eslint-disable-next-line consistent-return
     return () => {
       intersectionObserver.disconnect();
     };

@@ -2,14 +2,14 @@
 // https://api.server.d0lim.com/studium/v1/home
 
 export type HomeResponse = {
-  popular_recruit_articles: HomeRecruitArticleResponse[];
+  popularRecruitArticles: HomeRecruitArticleResponse[];
 } & RecruitArticlesResponse;
 
 // 추가 게시글 요청
 // https://api.server.d0lim.com/studium/v1/home/article?last={oldest_recent_article_id}&size={size}&sort={sortBy}
 export type RecruitArticlesResponse = {
-  recruit_articles: HomeRecruitArticleResponse[];
-  last_recruit_article_id: number;
+  recruitArticles: HomeRecruitArticleResponse[];
+  lastRecruitArticleId: number;
 };
 
 type HomeRecruitArticleResponse = {
@@ -17,20 +17,20 @@ type HomeRecruitArticleResponse = {
   title: string;
   description: string;
   tags: Tag[];
-  created_at: Date;
-  expires_at: Date;
+  createdAt: Date;
+  expiresAt: Date;
 };
 
 // https://api.server.d0lim.com/studium/v1/recruit/{id}
 
 // 최초 홈 화면 뷰 데이터
 export type HomeData = {
-  popular_recruit_articles: RecruitArticle[];
+  popularRecruitArticles: RecruitArticle[];
 } & RecruitArticles;
 
 // 추가 게시글 데이터
 export type RecruitArticles = {
-  recruit_articles: RecruitArticle[];
+  recruitArticles: RecruitArticle[];
 };
 
 // 홈 화면 게시글

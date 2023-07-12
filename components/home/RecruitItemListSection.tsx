@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "@/styles/pages/Home.module.sass";
 import RecruitItemList from "@/components/home/RecruitItemList";
 import { RecruitArticle, SortBy } from "@/types/home";
-import factory from "@/factories/homeFactory";
+import { getRecruitArticles } from "@/factories/homeFactory";
 
 type RecruitItemListSectionProps = {
   recruitArticles: RecruitArticle[];
@@ -26,12 +26,8 @@ function RecruitItemListSection({
     e.stopPropagation();
     setExpanded(!expanded);
     setSortType(e.currentTarget.value);
-    const articles = await factory.additionalArticle(
-      100,
-      0,
-      e.currentTarget.value,
-    );
-    setRecruitItemList(articles.recruit_articles);
+    const articles = await getRecruitArticles(100, 0, e.currentTarget.value);
+    setRecruitItemList(articles.recruitArticles);
   };
 
   const handleRecruitItemList = (articles: RecruitArticle[]) => {
