@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import styles from "@/styles/pages/Home.module.sass";
 import RecruitItemList from "@/components/home/RecruitItemList";
-import { RecruitArticle, SortBy } from "@/types/home";
+import { RecruitArticle, SortBy } from "@/types/study";
 import { getRecruitArticles } from "@/factories/homeFactory";
 
 type RecruitItemListSectionProps = {

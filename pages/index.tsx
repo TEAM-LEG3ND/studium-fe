@@ -5,7 +5,7 @@ import Carousel from "@/components/common/carousel/Carousel";
 import RecruitItem from "@/components/home/RecruitItem";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { getHomePageData } from "@/factories/homeFactory";
-import { HomePage } from "@/types/home";
+import { HomePage } from "@/types/study";
 import RecruitItemListSection from "@/components/home/RecruitItemListSection";
 
 export const getServerSideProps: GetServerSideProps<{

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "@/styles/pages/Home.module.sass";
-import { RecruitArticle } from "@/types/home";
+import { RecruitArticle } from "@/types/study";
 import { getRecruitArticles } from "@/factories/homeFactory";
 import RecruitItem from "./RecruitItem";
 

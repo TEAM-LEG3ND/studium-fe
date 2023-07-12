@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import styles from "@/styles/components/RecruitItem.module.sass";
-import { Tag } from "@/types/home";
+import { Tag } from "@/types/study";
 
 type RecruitItemTagsProps = {
   tags: Tag[];
