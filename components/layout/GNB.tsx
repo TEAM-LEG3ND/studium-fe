@@ -9,10 +9,10 @@ import {
   TEMPLATES_PATH,
   BOOKMARKS_PATH,
 } from "@/utils/routes";
-import ProfileBtn from "./ProfileBtn";
-import ProfileSubmenu from "./ProfileSubmenu";
+import ProfileBtn from "../common/ProfileBtn";
+import ProfileSubmenu from "../common/ProfileSubmenu";
 
-function MainHeader() {
+function GNB() {
   const [profileSubmenuVisibility, setProfileSubmenuVisibility] =
     useState(false);
   const handleProfileBtnClick = () => {
@@ -53,4 +53,4 @@ function MainHeader() {
   );
 }
 
-export default MainHeader;
+export default GNB;
