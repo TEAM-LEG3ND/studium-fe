@@ -23,7 +23,7 @@ function GNB() {
     <header className={styles.mainHeader}>
       <div>
         <Link href={HOME_PATH}>
-          <Logo />
+          <Logo className={styles.homeLogo} />
         </Link>
       </div>
       <nav aria-label="primary-nav" className={styles.gnb}>

@@ -1,9 +1,11 @@
 import Image from "next/image";
-import styles from "@/styles/components/Icon.module.sass";
+import { HTMLAttributes } from "react";
 
-function Logo() {
+type Props = HTMLAttributes<HTMLDivElement>;
+
+function Logo({ className, ...props }: Props) {
   return (
-    <div className={styles.homeLogo}>
+    <div className={className} {...props}>
       <Image
         src="https://studium-fe.s3.ap-northeast-2.amazonaws.com/public/studium-logo.png"
         alt="Studium logo"
