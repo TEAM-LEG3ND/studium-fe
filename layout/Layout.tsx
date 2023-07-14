@@ -4,7 +4,7 @@ import styles from "@/styles/layout/Layout.module.sass";
 
 import { WithChildren } from "@/utils/util-types";
 import { notoSansKr, sourceSansPro } from "@/utils/fonts";
-import GNB from "@/components/layout/GNB";
+import MainHeader from "@/components/layout/MainHeader";
 
 type LayoutProps = WithChildren<object>;
 
@@ -13,7 +13,7 @@ function Layout({ children }: LayoutProps) {
     <div
       className={`${styles.rootContainer} ${notoSansKr.variable} ${sourceSansPro.variable}`}
     >
-      <GNB />
+      <MainHeader />
       <main className={styles.contentsContainer}>
         <button
           type="button"

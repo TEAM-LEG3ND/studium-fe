@@ -1,20 +1,12 @@
 import Link from "next/link";
-import { useState } from "react";
 
 import styles from "@/styles/components/MainHeader.module.sass";
 import { HOME_PATH } from "@/utils/routes";
-import ProfileBtn from "../common/ProfileBtn";
-import ProfileSubmenu from "../common/ProfileSubmenu";
 import Logo from "../common/icon/Logo";
 import GNB from "./GNB";
+import MainAddon from "./MainAddon";
 
 function MainHeader() {
-  const [profileSubmenuVisibility, setProfileSubmenuVisibility] =
-    useState(false);
-  const handleProfileBtnClick = () => {
-    setProfileSubmenuVisibility(prev => !prev);
-  };
-
   return (
     <header className={styles.mainHeader}>
       <div>
@@ -23,8 +15,7 @@ function MainHeader() {
         </Link>
       </div>
       <GNB />
-      <ProfileBtn handleClick={handleProfileBtnClick} />
-      {profileSubmenuVisibility ? <ProfileSubmenu /> : null}
+      <MainAddon />
     </header>
   );
 }
