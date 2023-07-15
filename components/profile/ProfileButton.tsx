@@ -1,14 +1,15 @@
 import styles from "@/styles/components/ProfileBtn.module.sass";
 import Avatar from "../common/icon/Avatar";
+import Button from "../common/Button";
 
-type ProfileBtnProps = {
+type Props = {
   handleClick: () => void;
 };
 
-function ProfileBtn({ handleClick }: ProfileBtnProps) {
+function ProfileButton({ handleClick }: Props) {
   return (
     <div className={styles.profileContainer}>
-      <button
+      <Button
         type="button"
         onClick={handleClick}
         aria-label="profile dropdown button"
@@ -26,9 +27,9 @@ function ProfileBtn({ handleClick }: ProfileBtnProps) {
             d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"
           />
         </svg>
-      </button>
+      </Button>
     </div>
   );
 }
 
-export default ProfileBtn;
+export default ProfileButton;

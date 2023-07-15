@@ -4,7 +4,7 @@ import styles from "@/styles/components/MainHeader.module.sass";
 import { HOME_PATH } from "@/utils/routes";
 import Logo from "../common/icon/Logo";
 import GNB from "./GNB";
-import MainAddon from "./MainAddon";
+import GlobalAddon from "./GlobalAddon";
 
 function MainHeader() {
   return (
@@ -15,7 +15,7 @@ function MainHeader() {
         </Link>
       </div>
       <GNB />
-      <MainAddon />
+      <GlobalAddon />
     </header>
   );
 }
