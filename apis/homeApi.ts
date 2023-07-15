@@ -1,8 +1,6 @@
 // import fetchData from "@/utils/util-func";
 // import studium from "./paths";
 
-import { Tag } from "@/types/study";
-
 // 최초 홈 진입 통 API
 // https://api.server.d0lim.com/studium/v1/home
 
@@ -21,7 +19,7 @@ type HomeRecruitArticleResponse = {
   id: number;
   title: string;
   description: string;
-  tags: Tag[];
+  tags: { id: number; label: string }[];
   createdAt: Date;
   expiresAt: Date;
 };
@@ -37,11 +35,11 @@ const createRecruitItem = (count: number) =>
     tags: [
       {
         id: 1,
-        name: "BE",
+        label: "BE",
       },
       {
         id: 2,
-        name: "Spring",
+        label: "Spring",
       },
     ],
     createdAt: new Date(),

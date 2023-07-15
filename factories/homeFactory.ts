@@ -21,15 +21,15 @@ export const getHomePageData = async (): Promise<HomePage> => {
     id: article.id,
     title: article.title,
     description: article.description,
+    remainTime: "마감일 2일 17시간 남음",
     tags: article.tags,
-    announcement: "마감일 2일 17시간 남음",
   }));
   const resolvedOverviews = articles.map(article => ({
     id: article.id,
     title: article.title,
     description: article.description,
+    remainTime: "마감일 2일 17시간 남음",
     tags: article.tags,
-    announcement: "마감일 2일 17시간 남음",
   }));
 
   return {
@@ -56,8 +56,8 @@ export const getStudyOverviews = async (
     id: article.id,
     title: article.title,
     description: article.description,
+    remainTime: "마감일 2일 17시간 남음",
     tags: article.tags,
-    announcement: "마감일 2일 17시간 남음",
   }));
 
   return {
