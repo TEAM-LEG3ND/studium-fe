@@ -1,7 +1,7 @@
 import { StudyOverview } from "@/types/study";
 import Carousel from "../common/carousel/Carousel";
 import PostBoard from "./PostBoard";
-import RecruitItem from "./RecruitItem";
+import StudyOverviewCard from "./StudyOverviewCard";
 
 type Props = {
   studies: StudyOverview[];
@@ -11,14 +11,15 @@ function PopularStudyBoard({ studies }: Props) {
   return (
     <PostBoard title="현재 뜨는 스터디">
       <Carousel showSwiper>
-        {studies.map(({ id, title, description, tags, announcement }) => (
+        {studies.map(({ id, title, description, remainTime, tags }) => (
           <Carousel.Item key={id}>
-            <RecruitItem.Container>
-              <RecruitItem.Metric metric={announcement} />
-              <RecruitItem.Header id={id} title={title} />
-              <RecruitItem.Description id={id} description={description} />
-              <RecruitItem.Tags tags={tags} />
-            </RecruitItem.Container>
+            <StudyOverviewCard
+              id={id}
+              title={title}
+              description={description}
+              remainTime={remainTime}
+              tags={tags}
+            />
           </Carousel.Item>
         ))}
       </Carousel>

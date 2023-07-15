@@ -3,15 +3,15 @@ import PopularStudyBoard from "./PopularPostBoard.";
 
 type Props = {
   posts: {
-    popularStudies: StudyOverview[];
-    myStudies?: StudyOverview[];
+    popularStudyPosts: StudyOverview[];
+    myStudyPosts?: StudyOverview[];
   };
 };
 
 function PrivatePostBoardList({ posts }: Props) {
   return (
     <section>
-      <PopularStudyBoard studies={posts.popularStudies} />
+      <PopularStudyBoard studies={posts.popularStudyPosts} />
     </section>
   );
 }

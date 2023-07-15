@@ -2,19 +2,19 @@ import { useEffect, useRef } from "react";
 import styles from "@/styles/pages/Home.module.sass";
 import { StudyOverview } from "@/types/study";
 import { getStudyOverviews } from "@/factories/homeFactory";
-import RecruitItem from "./RecruitItem";
+import StudyOverviewCard from "./StudyOverviewCard";
 
-type RecruitItemListProps = {
+type Props = {
   studyOverviews: StudyOverview[];
   sortType: string;
   handleStudyOverviews: (overviews: StudyOverview[]) => void;
 };
 
-function RecruitItemList({
+function StudyPostList({
   studyOverviews,
   sortType,
   handleStudyOverviews,
-}: RecruitItemListProps) {
+}: Props) {
   const observableRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
     if (observableRef.current === null) return;
@@ -49,7 +49,7 @@ function RecruitItemList({
 
   return (
     <ul className={styles.recruitArticlesContainer}>
-      {studyOverviews.map(({ id, title, description, tags, announcement }) => (
+      {studyOverviews.map(({ id, title, description, tags, remainTime }) => (
         <li
           key={id}
           ref={node => {
@@ -58,16 +58,17 @@ function RecruitItemList({
             }
           }}
         >
-          <RecruitItem.Container>
-            <RecruitItem.Metric metric={announcement} />
-            <RecruitItem.Header id={id} title={title} />
-            <RecruitItem.Description id={id} description={description} />
-            <RecruitItem.Tags tags={tags} />
-          </RecruitItem.Container>
+          <StudyOverviewCard
+            id={id}
+            title={title}
+            description={description}
+            tags={tags}
+            remainTime={remainTime}
+          />
         </li>
       ))}
     </ul>
   );
 }
 
-export default RecruitItemList;
+export default StudyPostList;
