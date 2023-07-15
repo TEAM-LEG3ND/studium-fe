@@ -27,7 +27,7 @@ function RecruitItemListSection({
     setExpanded(!expanded);
     setSortType(e.currentTarget.value);
     const overviews = await getStudyOverviews(100, 0, e.currentTarget.value);
-    setRecruitItemList(overviews.studyOverviews);
+    setRecruitItemList(overviews.studyPosts);
   };
 
   const handleRecruitItemList = (articles: StudyOverview[]) => {

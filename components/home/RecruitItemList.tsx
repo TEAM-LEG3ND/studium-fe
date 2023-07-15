@@ -23,7 +23,7 @@ function RecruitItemList({
       entries => {
         entries.forEach(async entry => {
           if (entry.isIntersecting) {
-            const { studyOverviews: overviews } = await getStudyOverviews(
+            const { studyPosts: overviews } = await getStudyOverviews(
               100,
               studyOverviews.at(-1)!.id,
               sortType,
