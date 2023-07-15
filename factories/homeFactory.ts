@@ -2,8 +2,19 @@ import {
   getHomeResponseData,
   getRecruitArticlesResponseData,
 } from "@/apis/homeApi";
+import { StudyOverview } from "@/types/study";
 
-export const getHomePageData = async () => {
+export type HomePage = {
+  data: {
+    privatePosts: {
+      popularStudyPosts: StudyOverview[];
+      myStudyPosts?: StudyOverview[];
+    };
+    studyPosts: StudyOverview[];
+  };
+};
+
+export const getHomePageData = async (): Promise<HomePage> => {
   const { popularRecruitArticles: popularArticles, recruitArticles: articles } =
     await getHomeResponseData();
   const resolvedPopularOverviews = popularArticles.map(article => ({
@@ -22,8 +33,12 @@ export const getHomePageData = async () => {
   }));
 
   return {
-    popularStudyOverviews: resolvedPopularOverviews,
-    studyOverviews: resolvedOverviews,
+    data: {
+      privatePosts: {
+        popularStudyPosts: resolvedPopularOverviews,
+      },
+      studyPosts: resolvedOverviews,
+    },
   };
 };
 
@@ -46,6 +61,6 @@ export const getStudyOverviews = async (
   }));
 
   return {
-    studyOverviews: resolvedOverviews,
+    studyPosts: resolvedOverviews,
   };
 };
