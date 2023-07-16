@@ -1,5 +1,5 @@
 import { StudyOverview } from "@/types/study";
-import Carousel from "../common/carousel/Carousel";
+import Carousel from "../common/Carousel";
 import PostBoard from "./PostBoard";
 import StudyOverviewCard from "./StudyOverviewCard";
 
