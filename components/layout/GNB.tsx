@@ -1,5 +1,6 @@
 import { BOOKMARKS_PATH, STUDIES_PATH, TEMPLATES_PATH } from "@/utils/routes";
 import styles from "@/styles/components/MainHeader.module.sass";
+import { generateID } from "@/hooks/useId";
 import Navigation from "../common/Navigation";
 
 function GNB() {
@@ -12,7 +13,9 @@ function GNB() {
   return (
     <Navigation aria-label="global-navigation-bar" className={styles.gnb}>
       {gnbItems.map(item => (
-        <Navigation.Item route={item.route}>{item.label}</Navigation.Item>
+        <Navigation.Item key={generateID("studium-gnb")} route={item.route}>
+          {item.label}
+        </Navigation.Item>
       ))}
     </Navigation>
   );
