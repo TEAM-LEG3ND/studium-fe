@@ -44,8 +44,8 @@ export const getHomePageData = async (): Promise<HomePage> => {
 
 export const getStudyOverviews = async (
   size: number,
-  lastOverviewId: number,
-  sort: string,
+  lastOverviewId = 0,
+  sort = "최신순",
 ) => {
   const { recruitArticles: articles } = await getRecruitArticlesResponseData(
     size,
@@ -60,7 +60,5 @@ export const getStudyOverviews = async (
     tags: article.tags,
   }));
 
-  return {
-    studyPosts: resolvedOverviews,
-  };
+  return resolvedOverviews;
 };
