@@ -43,8 +43,8 @@ function SupportingText({ text, ...props }: SupportingTextProps) {
   return <p {...props}>{text}</p>;
 }
 
-function Addon({ children }: HTMLAttributes<HTMLDivElement>) {
-  return <div>{children}</div>;
+function Addon({ children, ...props }: HTMLAttributes<HTMLDivElement>) {
+  return <div {...props}>{children}</div>;
 }
 
 function Divider({ ...props }: HTMLAttributes<HTMLHRElement>) {
