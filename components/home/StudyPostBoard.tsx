@@ -1,23 +1,25 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import styles from "@/styles/pages/Home.module.sass";
 import { StudyOverview } from "@/types/study";
 import { getStudyOverviews } from "@/factories/homeFactory";
-import { generateID } from "@/hooks/useId";
+import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import PostBoard from "./PostBoard";
 import Dropdown, { DropdownItem } from "../common/Dropdown";
 import Button from "../common/Button";
 import StudyOverviewCard from "./StudyOverviewCard";
 import Grid from "../common/Grid";
+import Noob from "../common/Noob";
 
 type Props = {
   studies: StudyOverview[];
 };
 
 function StudyPostBoard({ studies }: Props) {
-  const observableRef = useRef<HTMLElement | null>(null);
+  const observableRef = useRef<HTMLDivElement | null>(null);
   const [studyList, setStudyList] = useState(studies);
   const [studySort, setStudySort] = useState("최신순");
+  const [isLastItem, setIsLastItem] = useState(false);
   const studySortItems: DropdownItem[] = [
     {
       label: "최신순",
@@ -37,6 +39,21 @@ function StudyPostBoard({ studies }: Props) {
     },
   ];
 
+  const onIntersect = async () => {
+    const loadingItemCnt = 100;
+
+    const newStudies = await getStudyOverviews(
+      loadingItemCnt,
+      studyList.at(-1)?.id,
+      studySort,
+    );
+
+    if (newStudies.length < loadingItemCnt) {
+      setIsLastItem(true);
+    }
+    setStudyList(studyList.concat(newStudies));
+  };
+
   const onChangeSort = async (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e === undefined || studySort === e.currentTarget.value) return;
 
@@ -45,35 +62,7 @@ function StudyPostBoard({ studies }: Props) {
     setStudyList(newStudies);
   };
 
-  useEffect(() => {
-    if (observableRef.current === null) return;
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(async entry => {
-          if (entry.isIntersecting) {
-            const newStudies = await getStudyOverviews(
-              100,
-              studyList.at(-1)?.id,
-              studySort,
-            );
-            if (newStudies.length === 0) {
-              observer.unobserve(entry.target);
-            } else {
-              setStudyList(studyList.concat(newStudies));
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.01,
-      },
-    );
-    observer.observe(observableRef.current);
-
-    // eslint-disable-next-line consistent-return
-    return () => observer.disconnect();
-  }, [studyList, studySort]);
+  useIntersectionObserver(observableRef, onIntersect, { threshold: 0.01 });
 
   return (
     <section className={styles.recommendsContainer}>
@@ -90,14 +79,7 @@ function StudyPostBoard({ studies }: Props) {
       >
         <Grid>
           {studyList.map(({ id, title, description, remainTime, tags }) => (
-            <Grid.Item
-              key={generateID("home-study-list")}
-              ref={node => {
-                if (node && id === studyList.at(-1)?.id) {
-                  observableRef.current = node;
-                }
-              }}
-            >
+            <Grid.Item key={id}>
               <StudyOverviewCard
                 id={id}
                 title={title}
@@ -107,6 +89,7 @@ function StudyPostBoard({ studies }: Props) {
               />
             </Grid.Item>
           ))}
+          {isLastItem === false ? <Noob ref={observableRef} /> : null}
         </Grid>
       </PostBoard>
     </section>

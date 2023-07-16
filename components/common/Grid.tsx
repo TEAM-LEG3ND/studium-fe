@@ -1,9 +1,4 @@
-import {
-  ForwardedRef,
-  HTMLAttributes,
-  LiHTMLAttributes,
-  forwardRef,
-} from "react";
+import { HTMLAttributes, LiHTMLAttributes } from "react";
 import styles from "@/styles/components/Grid.module.sass";
 
 type Props = HTMLAttributes<HTMLUListElement>;
@@ -18,16 +13,13 @@ function Grid({ className, children, ...props }: Props) {
   );
 }
 
-const GridItem = forwardRef(
-  (
-    { className, children, ...props }: ItemProps,
-    ref: ForwardedRef<HTMLLIElement>,
-  ) => (
-    <li ref={ref} className={className} {...props}>
+function GridItem({ className, children, ...props }: ItemProps) {
+  return (
+    <li className={className} {...props}>
       {children}
     </li>
-  ),
-);
+  );
+}
 
 export default Object.assign(Grid, {
   Item: GridItem,
