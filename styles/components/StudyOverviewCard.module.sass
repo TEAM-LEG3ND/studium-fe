@@ -17,16 +17,12 @@
 
 
 .overviewTitle
-  display: flex
-  justify-content: space-between
+  @include typo.text--20
+  @include typo.text--bold
+  @include mix.lineClampEllipsis(2)
 
-  & h3
-    @include typo.text--20
-    @include typo.text--bold
-    @include mix.lineClampEllipsis(2)
-
-    max-inline-size: 216px
-    word-break: break-all
+  max-inline-size: 216px
+  word-break: break-all
 
 
 .overviewDescription
