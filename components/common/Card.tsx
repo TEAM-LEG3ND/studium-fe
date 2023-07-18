@@ -8,7 +8,7 @@ type HeadingProps = {
 } & HTMLAttributes<HTMLHeadingElement>;
 
 type SupportingTextProps = {
-  text: string;
+  supportingText: string;
 } & HTMLAttributes<HTMLParagraphElement>;
 
 type MediaProps = {
