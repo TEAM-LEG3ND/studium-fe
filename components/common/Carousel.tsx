@@ -1,9 +1,9 @@
 import styles from "@/styles/components/Carousel.module.sass";
 import { WithChildren } from "@/utils/util-types";
 import { useEffect, useRef } from "react";
-import Prev from "./icon/Prev";
-import Next from "./icon/Next";
-import Button from "./Button";
+import Prev from "@/icon/Prev";
+import Next from "@/icon/Next";
+import Button from "@/Button";
 
 type CarouselProps = WithChildren<{
   showSwiper?: boolean;
