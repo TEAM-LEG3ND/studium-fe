@@ -1,22 +1,21 @@
 import styles from "@/styles/layout/Layout.module.sass";
 import { useState } from "react";
-import ProfileButton from "../profile/ProfileButton";
-import ProfileSubmenu from "../profile/ProfileSubmenu";
+import ProfileButton from "@/components/profile/ProfileButton";
+import ProfileSubmenu from "@/components/profile/ProfileSubmenu";
 
-function MainAddon() {
-  const [profileSubmenuVisibility, setProfileSubmenuVisibility] =
-    useState(false);
+function GlobalAddon() {
+  const [popped, setPopped] = useState(false);
 
-  const handleProfileBtnClick = () => {
-    setProfileSubmenuVisibility(prev => !prev);
+  const onClickProfileButton = () => {
+    setPopped(prev => !prev);
   };
 
   return (
     <div className={styles.mainAddons}>
-      <ProfileButton handleClick={handleProfileBtnClick} />
-      {profileSubmenuVisibility ? <ProfileSubmenu /> : null}
+      <ProfileButton onClick={onClickProfileButton} />
+      {popped ? <ProfileSubmenu /> : null}
     </div>
   );
 }
 
-export default MainAddon;
+export default GlobalAddon;

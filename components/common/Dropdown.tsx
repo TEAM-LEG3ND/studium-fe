@@ -19,11 +19,15 @@ type Props = {
 function Dropdown({ trigger, items, selected, onChange }: Props) {
   const [pop, setPop] = useState(false);
   const open = () => {
-    if (pop === false) setPop(true);
+    if (pop === false) {
+      setPop(true);
+    }
   };
 
   const close = () => {
-    if (pop === true) setPop(false);
+    if (pop === true) {
+      setPop(false);
+    }
   };
 
   const onClickTrigger = (e?: React.MouseEvent) => {
@@ -32,7 +36,9 @@ function Dropdown({ trigger, items, selected, onChange }: Props) {
   };
 
   const onClickItem = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    if (e) e.stopPropagation();
+    if (e) {
+      e.stopPropagation();
+    }
     close();
     onChange(e);
   };

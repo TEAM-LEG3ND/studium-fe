@@ -4,12 +4,12 @@ import styles from "@/styles/pages/Home.module.sass";
 import { StudyOverview } from "@/types/study";
 import { getStudyOverviews } from "@/factories/homeFactory";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
-import PostBoard from "./PostBoard";
-import Dropdown, { DropdownItem } from "../common/Dropdown";
-import Button from "../common/Button";
-import StudyOverviewCard from "./StudyOverviewCard";
-import Grid from "../common/Grid";
-import Noob from "../common/Noob";
+import PostBoard from "@/components/home/PostBoard";
+import Dropdown, { DropdownItem } from "@/components/common/Dropdown";
+import Button from "@/components/common/Button";
+import StudyOverviewCard from "@/components/home/StudyOverviewCard";
+import Grid from "@/components/common/Grid";
+import Noob from "@/components/common/Noob";
 
 type Props = {
   studies: StudyOverview[];
@@ -17,8 +17,8 @@ type Props = {
 
 function StudyPostBoard({ studies }: Props) {
   const observableRef = useRef<HTMLDivElement | null>(null);
-  const [studyList, setStudyList] = useState(studies);
-  const [studySort, setStudySort] = useState("최신순");
+  const [studyList, setStudyList] = useState<StudyOverview[]>(studies);
+  const [studySort, setStudySort] = useState<string>("최신순");
   const [isLastItem, setIsLastItem] = useState(false);
   const studySortItems: DropdownItem[] = [
     {

@@ -4,15 +4,15 @@ import Button from "../common/Button";
 import ArrowDown from "../common/icon/ArrowDown";
 
 type Props = {
-  handleClick: () => void;
+  onClick: () => void;
 };
 
-function ProfileButton({ handleClick }: Props) {
+function ProfileButton({ onClick }: Props) {
   return (
     <div className={styles.profileContainer}>
       <Button
         type="button"
-        onClick={handleClick}
+        onClick={onClick}
         aria-label="profile dropdown button"
         className={styles.profileBtn}
       >

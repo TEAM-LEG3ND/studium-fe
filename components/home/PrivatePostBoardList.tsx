@@ -1,5 +1,5 @@
 import { StudyOverview } from "@/types/study";
-import PopularStudyBoard from "./PopularPostBoard.";
+import PopularStudyBoard from "@/components/home/PopularPostBoard.";
 
 type Props = {
   posts: {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "@/styles/components/StudyOverviewCard.module.sass";
-import Card from "../common/Card";
+import Card from "@/components/common/Card";
 
 type Props = {
   id: number;
@@ -25,7 +25,7 @@ function StudyOverviewCard({
       <Link href={`/study/${id}`}>
         <Card.HeadLine headingText={title} className={styles.overviewTitle} />
         <Card.SupportingText
-          text={description}
+          supportingText={description}
           className={styles.overviewDescription}
         />
       </Link>

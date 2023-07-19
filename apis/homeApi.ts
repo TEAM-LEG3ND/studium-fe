@@ -2,15 +2,15 @@
 // import studium from "./paths";
 
 // 최초 홈 진입 통 API
-// https://api.server.d0lim.com/studium/v1/home
+// ${API_PATH}/home
 
-export type HomeResponse = {
+type HomeResponse = {
   popularRecruitArticles: HomeRecruitArticleResponse[];
 } & RecruitArticlesResponse;
 
 // 추가 게시글 요청
-// https://api.server.d0lim.com/studium/v1/home/article?last={oldest_recent_article_id}&size={size}&sort={sortBy}
-export type RecruitArticlesResponse = {
+// ${API_PATH}/home/article?last={oldest_recent_article_id}&size={size}&sort={sortBy}
+type RecruitArticlesResponse = {
   recruitArticles: HomeRecruitArticleResponse[];
   lastRecruitArticleId: number;
 };
@@ -24,7 +24,7 @@ type HomeRecruitArticleResponse = {
   expiresAt: Date;
 };
 
-// https://api.server.d0lim.com/studium/v1/recruit/{id}
+// ${API_PATH}/recruit/{id}
 
 const createRecruitItem = (count: number) =>
   Array.from({ length: count }, (v, i) => i + 1).map(v => ({

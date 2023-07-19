@@ -1,7 +1,7 @@
 import { BOOKMARKS_PATH, STUDIES_PATH, TEMPLATES_PATH } from "@/utils/routes";
 import styles from "@/styles/components/MainHeader.module.sass";
 import { generateID } from "@/hooks/useId";
-import Navigation from "../common/Navigation";
+import Navigation from "@/components/common/Navigation";
 
 function GNB() {
   const gnbItems = [

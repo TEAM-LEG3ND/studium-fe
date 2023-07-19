@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import styles from "@/styles/components/MainHeader.module.sass";
 import { HOME_PATH } from "@/utils/routes";
-import Logo from "../common/icon/Logo";
-import GNB from "./GNB";
-import GlobalAddon from "./GlobalAddon";
+import Logo from "@/components/common/icon/Logo";
+import GNB from "@/components/layout/GNB";
+import GlobalAddon from "@/components/layout/GlobalAddon";
 
 function MainHeader() {
   return (
