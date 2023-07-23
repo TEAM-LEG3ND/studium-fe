@@ -1,0 +1,10 @@
+@use "../abstracts/_variables" as vars
+  
+.cell
+  background-color: vars.$color-white
+
+  &:hover
+    background-color: vars.$color-gray-1
+
+  &[data-selected="true"]
+    background-color: vars.$color-gray-2
