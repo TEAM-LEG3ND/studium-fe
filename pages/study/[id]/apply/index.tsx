@@ -1,3 +1,4 @@
+import StudyDetailCollapseBoard from "@/components/apply/StudyDetailCollapseBoard";
 import TimeTable from "@/components/apply/TimeTable";
 import getStudyApplyPage, { Study } from "@/factories/studyFactory";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
@@ -42,7 +43,7 @@ function Page({
   return (
     <section>
       <header>
-        <h2>23년 토익 스터디 (3회차)</h2>
+        <StudyDetailCollapseBoard studyDetail={data} />
       </header>
       <div>
         <div>
