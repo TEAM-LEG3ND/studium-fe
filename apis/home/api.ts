@@ -1,30 +1,6 @@
 // import fetchData from "@/utils/util-func";
 // import studium from "./paths";
-
-// 최초 홈 진입 통 API
-// ${API_PATH}/home
-
-type HomeResponse = {
-  popularRecruitArticles: HomeRecruitArticleResponse[];
-} & RecruitArticlesResponse;
-
-// 추가 게시글 요청
-// ${API_PATH}/home/article?last={oldest_recent_article_id}&size={size}&sort={sortBy}
-type RecruitArticlesResponse = {
-  recruitArticles: HomeRecruitArticleResponse[];
-  lastRecruitArticleId: number;
-};
-
-type HomeRecruitArticleResponse = {
-  id: number;
-  title: string;
-  description: string;
-  tags: { id: number; label: string }[];
-  createdAt: Date;
-  expiresAt: Date;
-};
-
-// ${API_PATH}/recruit/{id}
+import { HomeResponse, RecruitArticlesResponse } from "@/apis/home/types";
 
 const createRecruitItem = (count: number) =>
   Array.from({ length: count }, (v, i) => i + 1).map(v => ({

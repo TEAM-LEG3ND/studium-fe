@@ -1,13 +1,13 @@
 import { HTMLAttributes, LiHTMLAttributes } from "react";
 import Link from "next/link";
 
-type Props = HTMLAttributes<HTMLUListElement>;
+type NavigationProps = HTMLAttributes<HTMLUListElement>;
 
-type ItemProps = {
+type NavigationItemProps = {
   route: string;
 } & LiHTMLAttributes<HTMLLIElement>;
 
-function Navigation({ children, className, ...props }: Props) {
+function Navigation({ children, className, ...props }: NavigationProps) {
   return (
     <ul className={className} {...props}>
       {children}
@@ -15,7 +15,12 @@ function Navigation({ children, className, ...props }: Props) {
   );
 }
 
-function NavigationItem({ route, children, className, ...props }: ItemProps) {
+function NavigationItem({
+  route,
+  children,
+  className,
+  ...props
+}: NavigationItemProps) {
   return (
     <Link href={route} className={className}>
       <li {...props}>{children}</li>

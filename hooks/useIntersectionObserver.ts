@@ -8,7 +8,7 @@ function useIntersectionObserver(
   const { threshold = 1, root = null, rootMargin = "0%" } = options;
 
   useEffect(() => {
-    if (ref.current === null) return;
+    if (ref.current === null) return undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -19,7 +19,6 @@ function useIntersectionObserver(
 
     observer.observe(ref.current);
 
-    // eslint-disable-next-line consistent-return
     return () => {
       observer.disconnect();
     };

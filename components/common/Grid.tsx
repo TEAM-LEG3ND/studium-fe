@@ -1,11 +1,11 @@
 import { HTMLAttributes, LiHTMLAttributes } from "react";
 import styles from "@/styles/components/Grid.module.sass";
 
-type Props = HTMLAttributes<HTMLUListElement>;
+type GridProps = HTMLAttributes<HTMLUListElement>;
 
-type ItemProps = LiHTMLAttributes<HTMLLIElement>;
+type GridItemProps = LiHTMLAttributes<HTMLLIElement>;
 
-function Grid({ className, children, ...props }: Props) {
+function Grid({ className, children, ...props }: GridProps) {
   return (
     <ul className={`${styles.grid} ${className}`} {...props}>
       {children}
@@ -13,7 +13,7 @@ function Grid({ className, children, ...props }: Props) {
   );
 }
 
-function GridItem({ className, children, ...props }: ItemProps) {
+function GridItem({ className, children, ...props }: GridItemProps) {
   return (
     <li className={className} {...props}>
       {children}

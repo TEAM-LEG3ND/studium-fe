@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes } from "react";
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement>;
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-function Button({ children, ...props }: Props) {
+function Button({ children, ...props }: ButtonProps) {
   return (
     // eslint-disable-next-line react/button-has-type
     <button {...props}>{children}</button>

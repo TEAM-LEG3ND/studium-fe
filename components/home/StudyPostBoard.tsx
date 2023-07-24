@@ -42,24 +42,24 @@ function StudyPostBoard({ studies }: Props) {
   const onIntersect = async () => {
     const loadingItemCnt = 100;
 
-    const newStudies = await getStudyOverviews(
+    const newStudyList = await getStudyOverviews(
       loadingItemCnt,
       studyList.at(-1)?.id,
       studySort,
     );
 
-    if (newStudies.length < loadingItemCnt) {
+    if (newStudyList.length < loadingItemCnt) {
       setIsLastItem(true);
     }
-    setStudyList(studyList.concat(newStudies));
+    setStudyList(sl => [...sl, ...newStudyList]);
   };
 
   const onChangeSort = async (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e === undefined || studySort === e.currentTarget.value) return;
 
     setStudySort(e.currentTarget.value);
-    const newStudies = await getStudyOverviews(100, 0, e.currentTarget.value);
-    setStudyList(newStudies);
+    const newStudyList = await getStudyOverviews(100, 0, e.currentTarget.value);
+    setStudyList(newStudyList);
   };
 
   useIntersectionObserver(observableRef, onIntersect, { threshold: 0.01 });

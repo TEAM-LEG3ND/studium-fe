@@ -9,22 +9,22 @@ import {
 } from "react";
 import styles from "@/styles/components/Menu.module.sass";
 
-type Props = HTMLAttributes<HTMLDivElement>;
+export type MenuProps = HTMLAttributes<HTMLDivElement>;
 
-type TriggerProps = {
+export type MenuTriggerProps = {
   as: ReactElement;
   onClick: (e?: React.MouseEvent) => void;
 };
 
-type ContainerProps = HTMLAttributes<HTMLUListElement>;
+export type MenuContainerProps = HTMLAttributes<HTMLUListElement>;
 
-type ItemProps = LiHTMLAttributes<HTMLLIElement>;
+export type MenuItemProps = LiHTMLAttributes<HTMLLIElement>;
 
-function Menu({ children }: Props) {
+function Menu({ children }: MenuProps) {
   return <div className={styles.root}>{children}</div>;
 }
 
-function MenuTrigger({ as, onClick }: TriggerProps) {
+function MenuTrigger({ as, onClick }: MenuTriggerProps) {
   const trigger = Children.only(as);
 
   return cloneElement(trigger, {
@@ -35,7 +35,7 @@ function MenuTrigger({ as, onClick }: TriggerProps) {
 
 const MenuContainer = forwardRef(
   (
-    { className, children, ...props }: ContainerProps,
+    { className, children, ...props }: MenuContainerProps,
     ref: ForwardedRef<HTMLUListElement>,
   ) => (
     <ul ref={ref} className={`${styles.container} ${className}`} {...props}>
@@ -44,7 +44,7 @@ const MenuContainer = forwardRef(
   ),
 );
 
-function MenuItem({ children, ...props }: ItemProps) {
+function MenuItem({ children, ...props }: MenuItemProps) {
   return <li {...props}>{children}</li>;
 }
 

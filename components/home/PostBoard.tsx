@@ -3,7 +3,6 @@ import { HTMLAttributes, ReactNode } from "react";
 
 type Props = {
   title: string;
-  // eslint-disable-next-line react/require-default-props
   addon?: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
@@ -18,5 +17,9 @@ function PostBoard({ title, addon, className, children }: Props) {
     </div>
   );
 }
+
+PostBoard.defaultProps = {
+  addon: null,
+};
 
 export default PostBoard;

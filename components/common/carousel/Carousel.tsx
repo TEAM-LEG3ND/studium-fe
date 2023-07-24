@@ -3,7 +3,7 @@ import { LiHTMLAttributes, useEffect, useRef } from "react";
 import { WithChildren } from "@/utils/util-types";
 import CarouselSwiper from "./CarouselSwiper";
 
-type CarouselProps = WithChildren<{
+export type CarouselProps = WithChildren<{
   showSwiper?: boolean;
 }>;
 
@@ -47,7 +47,7 @@ function Carousel({ showSwiper = false, children }: CarouselProps) {
   );
 }
 
-type CarouselItemProps = LiHTMLAttributes<HTMLLIElement>;
+export type CarouselItemProps = LiHTMLAttributes<HTMLLIElement>;
 
 function CarouselItem({ children, ...props }: CarouselItemProps) {
   return (

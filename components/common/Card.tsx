@@ -1,35 +1,35 @@
 import Image from "next/image";
 import { HTMLAttributes, ImgHTMLAttributes } from "react";
 
-type Props = HTMLAttributes<HTMLDivElement>;
+export type CardProps = HTMLAttributes<HTMLDivElement>;
 
-type HeadingProps = {
+export type CardHeadingProps = {
   headingText: string;
 } & HTMLAttributes<HTMLHeadingElement>;
 
-type SupportingTextProps = {
+export type CardSupportingTextProps = {
   supportingText: string;
 } & HTMLAttributes<HTMLParagraphElement>;
 
-type MediaProps = {
+export type CardMediaProps = {
   type: "img";
   src: string;
 } & ImgHTMLAttributes<HTMLImageElement> &
   HTMLAttributes<HTMLVideoElement>;
 
-function Card({ children, ...props }: Props) {
+function Card({ children, ...props }: CardProps) {
   return <div {...props}>{children}</div>;
 }
 
-function HeadLine({ headingText: headline, ...props }: HeadingProps) {
+function HeadLine({ headingText: headline, ...props }: CardHeadingProps) {
   return <h2 {...props}>{headline}</h2>;
 }
 
-function SubHead({ headingText: subhead, ...props }: HeadingProps) {
+function SubHead({ headingText: subhead, ...props }: CardHeadingProps) {
   return <h3 {...props}>{subhead}</h3>;
 }
 
-function Media({ type, src, className }: MediaProps) {
+function Media({ type, src, className }: CardMediaProps) {
   return (
     <div className={className}>
       {type === "img" ? (
@@ -39,8 +39,8 @@ function Media({ type, src, className }: MediaProps) {
   );
 }
 
-function SupportingText({ text, ...props }: SupportingTextProps) {
-  return <p {...props}>{text}</p>;
+function SupportingText({ supportingText, ...props }: CardSupportingTextProps) {
+  return <p {...props}>{supportingText}</p>;
 }
 
 function Addon({ children, ...props }: HTMLAttributes<HTMLDivElement>) {

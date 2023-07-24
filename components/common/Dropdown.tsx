@@ -9,14 +9,14 @@ export type DropdownItem<T = string> = (
   | { icon: ReactElement; label?: T | ReactElement }
 ) & { value: string | number };
 
-type Props = {
+export type DropdownProps = {
   trigger: ReactElement;
   items: DropdownItem[];
   selected: DropdownItem;
   onChange: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-function Dropdown({ trigger, items, selected, onChange }: Props) {
+function Dropdown({ trigger, items, selected, onChange }: DropdownProps) {
   const [pop, setPop] = useState(false);
   const open = () => {
     if (pop === false) {
