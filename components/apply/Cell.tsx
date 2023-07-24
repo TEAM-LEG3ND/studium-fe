@@ -1,10 +1,16 @@
 import styles from "@/styles/components/TimeTable.module.sass";
 
+export enum SelectState {
+  "None" = 0,
+  "ToSelect",
+  "Selected",
+}
+
 type CellProps = {
   label: string;
-  selected: boolean;
+  state: SelectState;
   point: [number, number];
-  handleMouseDown: (point: [number, number], selected: boolean) => void;
+  handleMouseDown: (point: [number, number], state: SelectState) => void;
   handleMouseEnter: (point: [number, number]) => void;
   handleMouseUp: (point: [number, number]) => void;
 };
@@ -13,7 +19,7 @@ type CellProps = {
 // on trigger event: mousedown,
 function Cell({
   label,
-  selected,
+  state,
   point,
   handleMouseDown,
   handleMouseEnter,
@@ -21,7 +27,7 @@ function Cell({
 }: CellProps) {
   const onMouseDown = (e: React.MouseEvent<HTMLTableDataCellElement>) => {
     e.stopPropagation();
-    handleMouseDown(point, selected);
+    handleMouseDown(point, state);
   };
 
   const onMouseEnter = (e: React.MouseEvent<HTMLTableDataCellElement>) => {
@@ -39,7 +45,7 @@ function Cell({
       onMouseDown={onMouseDown}
       onMouseEnter={onMouseEnter}
       onMouseUp={onMouseUp}
-      data-selected={selected}
+      data-state={state}
       className={styles.cell}
     >
       {label}

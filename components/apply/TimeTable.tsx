@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import Cell from "./Cell";
+import Cell, { SelectState } from "./Cell";
 // import styles from "@/styles/components/TimeTable.module.sass";
 
 const DayOfTheWeek: Record<number, string> = {
@@ -42,18 +42,32 @@ function TimeTable({
   const [dragStartPoint, setDragStartPoint] = useState<[number, number]>([
     0, 0,
   ]);
-  const [mode, setMode] = useState<boolean>(false);
-  const [table, setTable] = useState<boolean[][]>(
-    Array.from(Array((endTime - startTime) / step), () => Array(7).fill(false)),
+  const [mode, setMode] = useState<SelectState>(SelectState.None);
+  const [table, setTable] = useState<SelectState[][]>(
+    Array.from(Array((endTime - startTime) / step), () =>
+      Array(7).fill(SelectState.None),
+    ),
   );
-  const exTable = useRef<readonly boolean[][]>([...table]);
+  const exTable = useRef<readonly SelectState[][]>([...table]);
 
-  const handleMouseDown = (point: [number, number], selected: boolean) => {
+  const tableHeads = [
+    "월요일",
+    "화요일",
+    "수요일",
+    "목요일",
+    "금요일",
+    "토요일",
+    "일요일",
+  ];
+
+  const handleMouseDown = (point: [number, number], state: SelectState) => {
     setDragging(true);
     setDragStartPoint(point);
-    setMode(!selected);
+    setMode(
+      state === SelectState.None ? SelectState.Selected : SelectState.None,
+    );
     const newTable = structuredClone(table);
-    newTable[point[0]][point[1]] = !selected;
+    newTable[point[0]][point[1]] = SelectState.ToSelect;
     setTable(newTable);
   };
 
@@ -69,10 +83,11 @@ function TimeTable({
       for (let i = 0; i < newTable.length; i += 1) {
         for (let j = 0; j < newTable[i].length; j += 1) {
           if (i <= maxRow && i >= minRow && j <= maxCol && j >= minCol) {
-            newTable[i][j] = mode;
-          } else {
-            newTable[i][j] = exTable.current[i][j];
+            newTable[i][j] = SelectState.ToSelect;
           }
+          // else {
+          //   newTable[i][j] = exTable.current[i][j];
+          // }
         }
       }
       setTable(newTable);
@@ -83,29 +98,31 @@ function TimeTable({
     setDragging(false);
     exTable.current = [...table];
     const selected = [];
+    const newTable = structuredClone(table);
+
     for (let i = 0; i < table.length; i += 1) {
       for (let j = 0; j < table[i].length; j += 1) {
-        if (table[i][j] === true) {
+        if (table[i][j] === SelectState.ToSelect) {
           selected.push(
             `${DayOfTheWeek[j]}-${convertFloatToTime(startTime + step * i)}`,
           );
+          newTable[i][j] = mode;
         }
       }
     }
     onChange(selected);
+    setTable(newTable);
   };
 
   return (
     <table>
       <thead>
         <tr>
-          <th scope="col">월요일</th>
-          <th scope="col">화요일</th>
-          <th scope="col">수요일</th>
-          <th scope="col">목요일</th>
-          <th scope="col">금요일</th>
-          <th scope="col">토요일</th>
-          <th scope="col">일요일</th>
+          {tableHeads.map((head, i) => (
+            <th key={i} scope="col">
+              {head}
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
@@ -117,7 +134,7 @@ function TimeTable({
                 // eslint-disable-next-line react/no-array-index-key
                 key={j}
                 label={convertFloatToTime(startTime + step * i)}
-                selected={td}
+                state={td}
                 point={[i, j]}
                 handleMouseDown={handleMouseDown}
                 handleMouseEnter={handleMouseEnter}
