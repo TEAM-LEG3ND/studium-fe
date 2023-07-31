@@ -1,4 +1,5 @@
 import Modal from "@/components/common/Modal";
+import TextEditor from "@/components/common/TextEditor";
 import useModalTest from "../components/common/hooks/useModalTest";
 
 export default function ModalTest() {
@@ -15,6 +16,7 @@ export default function ModalTest() {
         showPrevBtn
         contents={<div>contents</div>}
       />
+      <TextEditor />
     </>
   );
 }
