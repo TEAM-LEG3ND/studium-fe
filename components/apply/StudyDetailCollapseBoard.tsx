@@ -60,6 +60,7 @@ function StudyDetailCollapseBoard({ studyDetail }: Props) {
           <h3>진행 방식</h3>
           <div>
             {studyDetail.process.map((pc, i) => (
+              // eslint-disable-next-line react/no-array-index-key
               <p key={i}>{pc}</p>
             ))}
           </div>
@@ -68,6 +69,7 @@ function StudyDetailCollapseBoard({ studyDetail }: Props) {
           <h3>규칙</h3>
           <div>
             {studyDetail.rules.map((rule, i) => (
+              // eslint-disable-next-line react/no-array-index-key
               <p key={i}>{rule}</p>
             ))}
           </div>

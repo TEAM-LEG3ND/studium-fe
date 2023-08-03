@@ -25,7 +25,6 @@ const convertFloatToTime = (fl: number) => {
 
 type Props = {
   onChange: (data: string[]) => void;
-  // eslint-disable-next-line react/require-default-props
   options?: {
     startTime: number;
     endTime: number;
@@ -119,6 +118,7 @@ function TimeTable({
       <thead>
         <tr>
           {tableHeads.map((head, i) => (
+            // eslint-disable-next-line react/no-array-index-key
             <th key={i} scope="col">
               {head}
             </th>
@@ -147,5 +147,13 @@ function TimeTable({
     </table>
   );
 }
+
+TimeTable.defaultProps = {
+  options: {
+    startTime: 0,
+    endTime: 24,
+    step: 1,
+  },
+};
 
 export default TimeTable;
