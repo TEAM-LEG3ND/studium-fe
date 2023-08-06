@@ -1,7 +1,4 @@
-import {
-  getHomeResponseData,
-  getRecruitArticlesResponseData,
-} from "@/apis/home/api";
+import { getPopularStudyList, getStudyList } from "@/apis/home/api";
 import { StudyOverview } from "@/types/study";
 
 export type HomePage = {
@@ -15,21 +12,29 @@ export type HomePage = {
 };
 
 export const getHomePageData = async (): Promise<HomePage> => {
-  const { popularRecruitArticles: popularArticles, recruitArticles: articles } =
-    await getHomeResponseData();
-  const resolvedPopularOverviews = popularArticles.map(article => ({
-    id: article.id,
-    title: article.title,
-    description: article.description,
+  const [popularStudyList, studyList] = await Promise.all([
+    getPopularStudyList(),
+    getStudyList(),
+  ]);
+  const resolvedPopularOverviews = popularStudyList.map(study => ({
+    id: study.id,
+    title: study.title,
+    description: study.intro,
     remainTime: "마감일 2일 17시간 남음",
-    tags: article.tags,
+    tags: [
+      { id: 1, label: "BE" },
+      { id: 2, label: "Spring" },
+    ],
   }));
-  const resolvedOverviews = articles.map(article => ({
-    id: article.id,
-    title: article.title,
-    description: article.description,
+  const resolvedOverviews = studyList.map(study => ({
+    id: study.id,
+    title: study.title,
+    description: study.intro,
     remainTime: "마감일 2일 17시간 남음",
-    tags: article.tags,
+    tags: [
+      { id: 1, label: "BE" },
+      { id: 2, label: "Spring" },
+    ],
   }));
 
   return {
@@ -47,17 +52,16 @@ export const getStudyOverviews = async (
   lastOverviewId = 0,
   sort = "최신순",
 ) => {
-  const { recruitArticles: articles } = await getRecruitArticlesResponseData(
-    size,
-    lastOverviewId,
-    sort,
-  );
-  const resolvedOverviews = articles.map(article => ({
-    id: article.id,
-    title: article.title,
-    description: article.description,
+  const studyList = await getStudyList();
+  const resolvedOverviews = studyList.map(study => ({
+    id: study.id,
+    title: study.title,
+    description: study.intro,
     remainTime: "마감일 2일 17시간 남음",
-    tags: article.tags,
+    tags: [
+      { id: 1, label: "BE" },
+      { id: 2, label: "Spring" },
+    ],
   }));
 
   return resolvedOverviews;

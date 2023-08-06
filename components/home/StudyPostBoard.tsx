@@ -16,10 +16,13 @@ type Props = {
 };
 
 function StudyPostBoard({ studies }: Props) {
+  const loadingItemCount = 100;
   const observableRef = useRef<HTMLDivElement | null>(null);
   const [studyList, setStudyList] = useState<StudyOverview[]>(studies);
   const [studySort, setStudySort] = useState<string>("최신순");
-  const [isLastItem, setIsLastItem] = useState(false);
+  const [isLastItem, setIsLastItem] = useState<boolean>(
+    studies.length < loadingItemCount,
+  );
   const studySortItems: DropdownItem[] = [
     {
       label: "최신순",
@@ -40,15 +43,13 @@ function StudyPostBoard({ studies }: Props) {
   ];
 
   const onIntersect = async () => {
-    const loadingItemCnt = 100;
-
     const newStudyList = await getStudyOverviews(
-      loadingItemCnt,
+      loadingItemCount,
       studyList.at(-1)?.id,
       studySort,
     );
 
-    if (newStudyList.length < loadingItemCnt) {
+    if (newStudyList.length < loadingItemCount) {
       setIsLastItem(true);
     }
     setStudyList(sl => [...sl, ...newStudyList]);

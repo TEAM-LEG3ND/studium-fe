@@ -1,56 +1,45 @@
-// import fetchData from "@/utils/util-func";
-// import studium from "./paths";
-import { HomeResponse, RecruitArticlesResponse } from "@/apis/home/types";
+import { Study, StudyResponse } from "@/apis/home/types";
 
-const createRecruitItem = (count: number) =>
+const createRecruitItem = (count: number): Study[] =>
   Array.from({ length: count }, (v, i) => i + 1).map(v => ({
     id: v,
-    title: `스프링 기초 스터디 ${v}`,
-    description:
-      "스프링 6 버전에서 새로 도입된 개념과 스프링 프레임워크의 핵심 요소들을 공부합니다.",
+    leaderId: 3,
+    createdAt: "2023-07-27T14:11:37.609Z",
+    updatedAt: "2023-07-27T14:11:55.526Z",
+    intro: "string",
+    rules: [""],
+    location: "string",
+    status: "RECRUITING",
+    endDate: "2023-07-27T14:06:39.677Z",
+    recruitEndDate: "2023-07-27T14:06:39.677Z",
+    recruitStartDate: "2023-07-27T14:06:39.677Z",
+    startDate: "2023-07-27T14:06:39.677Z",
+    name: "string",
     tags: [
-      {
-        id: 1,
-        label: "BE",
-      },
-      {
-        id: 2,
-        label: "Spring",
-      },
+      { id: 1, label: "BE" },
+      { id: 2, label: "Spring" },
     ],
-    createdAt: new Date(),
-    expiresAt: new Date(),
+    questionnaire: [{ id: 1, question: "" }],
+    recruited: 0,
+    recruiting: 0,
+    studyTemplate: "string",
+    title: "가나다라마바사",
   }));
 
-const recruitArticleListData = createRecruitItem(500);
 const popularRecruitArticleData = createRecruitItem(12);
 
-export const getHomeResponseData = async (): Promise<HomeResponse> => {
-  // const homeData = await fetchData(studium.home.base());
-  const homeData = {
-    popularRecruitArticles: popularRecruitArticleData,
-    recruitArticles: recruitArticleListData.slice(0, 100),
-    lastRecruitArticleId: 100,
-  };
-  return homeData;
+export const getStudyList = async (): Promise<StudyResponse> => {
+  const res = await fetch(`https://api.server.d0lim.com/studium/api/v1/study`);
+  if (!res.ok) {
+    console.error("study response not ok");
+    throw new Error("study response not ok");
+  }
+  const data = await res.json();
+
+  return data;
 };
 
-export const getRecruitArticlesResponseData = async (
-  size: number,
-  lastArticleId: number,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  sort: string,
-): Promise<RecruitArticlesResponse> => {
-  // const articlesData = await fetchData(
-  //   studium.home.articles(size, lastArticleId, sort)
-  // );
-
-  const articlesData = {
-    recruitArticles: recruitArticleListData.slice(
-      lastArticleId,
-      lastArticleId + size,
-    ),
-    lastRecruitArticleId: lastArticleId + size,
-  };
-  return articlesData;
+export const getPopularStudyList = async () => {
+  const data = await Promise.resolve(popularRecruitArticleData);
+  return data;
 };
