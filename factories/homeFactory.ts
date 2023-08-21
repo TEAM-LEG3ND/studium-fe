@@ -1,4 +1,4 @@
-import { getPopularStudyList, getStudyList } from "@/apis/home/api";
+import { fetchOnFireStudyList, fetchStudyList } from "@/apis/home/api";
 import { StudyOverview } from "@/types/study";
 import { calculateDateDiff } from "@/utils/util-func";
 
@@ -21,62 +21,56 @@ const convertDateDiffToRemainTimeVO = (diff: {
 
 export const getHomePageData = async (): Promise<HomePage> => {
   const [popularStudyList, studyList] = await Promise.all([
-    getPopularStudyList(),
-    getStudyList(),
+    fetchOnFireStudyList(),
+    fetchStudyList(),
   ]);
-  const resolvedPopularOverviews = popularStudyList.map(study => ({
+  const resolvedPopularList = popularStudyList.map(study => ({
     id: study.id,
-    title: study.title,
+    title: study.name,
     description: study.intro,
     remainTime: convertDateDiffToRemainTimeVO(
       calculateDateDiff(new Date(), new Date(study.recruitEndDate)),
     ),
-    tags: [
-      { id: 1, label: "BE" },
-      { id: 2, label: "Spring" },
-    ],
+    tags: study.tags,
   }));
-  const resolvedOverviews = studyList.map(study => ({
+  const resolvedStudyList = studyList.map(study => ({
     id: study.id,
-    title: study.title,
+    title: study.name,
     description: study.intro,
     remainTime: convertDateDiffToRemainTimeVO(
       calculateDateDiff(new Date(), new Date(study.recruitEndDate)),
     ),
-    tags: [
-      { id: 1, label: "BE" },
-      { id: 2, label: "Spring" },
-    ],
+    tags: study.tags,
   }));
 
   return {
     data: {
       privatePosts: {
-        popularStudyPosts: resolvedPopularOverviews,
+        popularStudyPosts: resolvedPopularList,
       },
-      studyPosts: resolvedOverviews,
+      studyPosts: resolvedStudyList,
     },
   };
 };
 
-export const getStudyOverviews = async (
+export const getStudyList = async (
   size: number,
   lastOverviewId = 0,
   sort = "최신순",
 ) => {
-  const studyList = await getStudyList();
-  const resolvedOverviews = studyList.map(study => ({
+  const studyList = await fetchStudyList();
+  const resolvedList = studyList.map(study => ({
     id: study.id,
-    title: study.title,
+    title: study.name,
     description: study.intro,
     remainTime: convertDateDiffToRemainTimeVO(
       calculateDateDiff(new Date(), new Date(study.recruitEndDate)),
     ),
     tags: [
-      { id: 1, label: "BE" },
-      { id: 2, label: "Spring" },
+      { id: 1, name: "BE" },
+      { id: 2, name: "Spring" },
     ],
   }));
 
-  return resolvedOverviews;
+  return resolvedList;
 };
