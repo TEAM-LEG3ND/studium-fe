@@ -66,10 +66,7 @@ export const getStudyList = async (
     remainTime: convertDateDiffToRemainTimeVO(
       calculateDateDiff(new Date(), new Date(study.recruitEndDate)),
     ),
-    tags: [
-      { id: 1, name: "BE" },
-      { id: 2, name: "Spring" },
-    ],
+    tags: study.tags,
   }));
 
   return resolvedList;
