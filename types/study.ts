@@ -23,3 +23,22 @@ export type Tag = {
   id: number;
   name: string;
 };
+
+export type StudyDetail = {
+  id: number;
+  title: string;
+  progressPeriod: string;
+  recruitPeriod: string;
+  recruitsNumber: string;
+  location: string;
+  progress: string[];
+  rules: string[];
+  tags: Tag[];
+  leader: {
+    id: number;
+    name: string;
+    intro: string;
+    thumnail: string;
+    email: string;
+  };
+};
