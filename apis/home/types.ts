@@ -17,6 +17,7 @@ export type Study = {
   viewCount: number;
   tags: [
     {
+      id: number;
       name: string;
     },
   ];
