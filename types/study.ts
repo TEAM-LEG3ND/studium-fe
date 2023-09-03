@@ -35,9 +35,8 @@ export type StudyDetail = {
   tags: Tag[];
   leader: {
     id: number;
-    name: string;
+    nickname: string;
     intro: string;
-    thumnail: string;
-    email: string;
+    profileUrl: string;
   };
 };
