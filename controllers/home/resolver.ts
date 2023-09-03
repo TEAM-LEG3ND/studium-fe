@@ -1,5 +1,6 @@
 import { Study } from "@/apis/study/types";
 import { StudyOverview } from "@/types/study";
+import { calculateDateDiff } from "@/utils/util-func";
 
 export const resolveRecruitRemainTime = (diff: {
   day: number;
@@ -12,7 +13,7 @@ export const resolveStudyOverview = (study: Study): StudyOverview => ({
   id: study.id,
   title: study.name,
   description: study.intro,
-  remainTime: convertDateDiffToRemainTimeVO(
+  remainTime: resolveRecruitRemainTime(
     calculateDateDiff(new Date(), new Date(study.recruitEndDate)),
   ),
   tags: study.tags,
