@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 import styles from "@/styles/pages/Home.module.sass";
 import { StudyOverview } from "@/types/study";
-import { getStudyList } from "@/factories/homeFactory";
+import { getStudyList } from "@/controllers/home/controller";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import PostBoard from "@/components/home/PostBoard";
 import Dropdown, { DropdownItem } from "@/components/common/Dropdown";
@@ -43,11 +43,7 @@ function StudyPostBoard({ studies }: Props) {
   ];
 
   const onIntersect = async () => {
-    const newStudyList = await getStudyList(
-      loadingItemCount,
-      studyList.at(-1)?.id,
-      studySort,
-    );
+    const newStudyList = await getStudyList(studySort);
 
     if (newStudyList.length < loadingItemCount) {
       setIsLastItem(true);
@@ -59,7 +55,7 @@ function StudyPostBoard({ studies }: Props) {
     if (e === undefined || studySort === e.currentTarget.value) return;
 
     setStudySort(e.currentTarget.value);
-    const newStudyList = await getStudyList(100, 0, e.currentTarget.value);
+    const newStudyList = await getStudyList(e.currentTarget.value);
     setStudyList(newStudyList);
   };
 
