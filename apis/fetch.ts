@@ -7,6 +7,10 @@ function handleFetchError(res: Response) {
     throw new NotFoundError();
   }
 
+  if (!res.ok) {
+    throw new Error(`fetch error occured. status=${res.status}`);
+  }
+
   return res;
 }
 
