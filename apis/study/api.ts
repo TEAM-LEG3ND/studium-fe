@@ -5,7 +5,9 @@ import {
 } from "@/apis/study/types";
 import fetchWithHandler from "../fetch";
 
-export const fetchStudyList = async (): Promise<StudyResponse> => {
+export const fetchStudyList = async (
+  sort = "update",
+): Promise<StudyResponse> => {
   const data = await fetchWithHandler(
     `https://api.server.d0lim.com/studium/api/v1/study`,
   );
