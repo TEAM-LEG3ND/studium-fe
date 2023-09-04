@@ -1,6 +1,6 @@
 import { StudyApply } from "@/controllers/study/types";
 import CollapseBoard from "../common/CollapseBoard";
-import StudyTagList from "../study/StudyTagList";
+import StudyTagInfo from "../study/StudyTagInfo";
 import Icon from "../common/Icon";
 
 type Props = {
@@ -33,7 +33,7 @@ function StudyDetailCollapseBoard({ studyDetail }: Props) {
       <CollapseBoard.Board>
         <div>
           <ul>
-            <StudyTagList tags={studyDetail.tags} />
+            <StudyTagInfo tags={studyDetail.tags} />
           </ul>
         </div>
         <div>
