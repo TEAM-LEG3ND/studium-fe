@@ -1,13 +1,14 @@
 import Link from "next/link";
 import styles from "@/styles/components/StudyOverviewCard.module.sass";
 import Card from "@/components/common/Card";
+import { Tag } from "@/types/study";
 
 type Props = {
   id: number;
   title: string;
   description: string;
   remainTime: string;
-  tags: { id: number; label: string }[];
+  tags: Tag[];
 };
 
 function StudyOverviewCard({
@@ -31,9 +32,10 @@ function StudyOverviewCard({
       </Link>
       <Card.Addon>
         <ul className={styles.overviewTags}>
-          {tags.map(tag => (
-            <li key={tag.id} className={styles.overviewTag}>
-              {tag.label}
+          {tags.map((tag, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li key={i} className={styles.overviewTag}>
+              {tag.name}
             </li>
           ))}
         </ul>
