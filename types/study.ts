@@ -30,7 +30,7 @@ export type StudyDetail = {
   recruitPeriod: string;
   recruitsNumber: string;
   location: string;
-  progress: string[];
+  progress: string;
   rules: string[];
   tags: Tag[];
   leader: {
