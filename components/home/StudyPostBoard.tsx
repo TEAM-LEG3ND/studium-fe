@@ -29,16 +29,8 @@ function StudyPostBoard({ studies }: Props) {
       value: "최신순",
     },
     {
-      label: "추천순",
-      value: "추천순",
-    },
-    {
-      label: "인기순",
-      value: "인기순",
-    },
-    {
-      label: "북마크순",
-      value: "북마크순",
+      label: "조회순",
+      value: "조회순",
     },
   ];
 
@@ -67,7 +59,7 @@ function StudyPostBoard({ studies }: Props) {
         title="당신의 스터디, 스터디움이 응원합니다."
         addon={
           <Dropdown
-            trigger={<Button className={styles.sortButton}>{studySort}</Button>}
+            trigger={<Button className={styles.sortBtn}>{studySort}</Button>}
             items={studySortItems}
             selected={{ label: studySort, value: studySort }}
             onChange={onChangeSort}
