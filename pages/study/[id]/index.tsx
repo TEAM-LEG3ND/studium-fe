@@ -1,12 +1,12 @@
-import { StudyDetail } from "@/types/study";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 import styles from "@/styles/pages/Study.module.sass";
 import StudyInfo from "@/components/study/StudyInfo";
 import ApplyBtn from "@/components/study/ApplyBtn";
-import getStudyDetail from "@/factories/studyFactory";
+import { getStudyDetail } from "@/controllers/study/controller";
 import { ParsedUrlQuery } from "querystring";
 import Icon from "@/components/common/Icon";
+import { StudyDetail } from "@/controllers/study/types";
 
 export const getServerSideProps: GetServerSideProps<{
   view: StudyDetail;

@@ -1,6 +1,5 @@
-import { StudyDetail } from "@/types/study";
-
 import styles from "@/styles/pages/Study.module.sass";
+import { StudyDetail } from "@/controllers/study/types";
 import StudyTagList from "./StudyTagList";
 import StudyLeaderInfo from "./StudyLeaderInfo";
 import StudyProgressInfo from "./StudyProgressInfo";
