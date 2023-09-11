@@ -1,5 +1,5 @@
-import { Study, StudyNoticeResponse } from "@/apis/study/types";
 import { convertDateToFormat, extractTimeInFormat } from "@/utils/util-func";
+import { Study, StudyNoticeResponse } from "@/apis/study/schema";
 import { StudyApply, StudyDetail, StudyNotice } from "./types";
 
 export const resolveStudyDetail = (study: Study): StudyDetail => ({
