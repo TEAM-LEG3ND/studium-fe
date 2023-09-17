@@ -4,13 +4,6 @@ export type Study = z.infer<typeof studySchema>;
 
 export const studySchema = z.object({
   id: z.number(),
-  leader: z.object({
-    id: z.number(),
-    nickname: z.string(),
-    manners: z.number(),
-    intro: z.string(),
-    profileURL: z.string(),
-  }),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
   name: z.string(),
@@ -32,13 +25,23 @@ export const studySchema = z.object({
   ),
 });
 
+const userSchema = z.object({
+  id: z.number(),
+  nickname: z.string(),
+  manners: z.number(),
+  intro: z.string(),
+  profileURL: z.string(),
+});
+
 export type StudyResponse = z.infer<typeof studyResponseSchema>;
 
 export const studyResponseSchema = z.array(studySchema);
 
 export type StudyByIdResponse = z.infer<typeof studyByIdResponseSchema>;
 
-export const studyByIdResponseSchema = studySchema;
+export const studyByIdResponseSchema = studySchema.merge(
+  z.object({ leader: userSchema }),
+);
 
 export type OnFireStudyResponse = z.infer<typeof onFireStudyResponseSchema>;
 
