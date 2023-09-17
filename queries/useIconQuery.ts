@@ -23,7 +23,7 @@ export default function useIconQuery(name: string, options?: IconQueryOption) {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["icon", name],
     queryFn: () =>
       fetchIcon(name, {
         baseURL:
