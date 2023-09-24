@@ -11,6 +11,7 @@ import {
   studyNoticeResponseSchema,
 } from "@/apis/study/schema";
 import appAxios from "../appAxios";
+import { StudyForm } from "@/pages/study/new";
 
 export const fetchStudyList = async (
   sort = "update",
@@ -53,4 +54,22 @@ export const fetchStudyNotice = async (
   const validatedData = studyNoticeResponseSchema.parse(data);
 
   return validatedData;
+};
+
+export const postStudy = async (
+  newStudy: StudyForm,
+): Promise<StudyResponse> => {
+  const res = await fetch(`https://api.server.d0lim.com/studium/api/v1/study`, {
+    method: "POST",
+    body: JSON.stringify(newStudy),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Fail to create new study");
+  }
+  const data = await res.json();
+
+  return data;
 };
