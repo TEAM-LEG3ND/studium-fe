@@ -10,10 +10,12 @@ import {
   studyJournalListResponseSchema,
   studyNoticeResponseSchema,
 } from "@/apis/study/schema";
-import appAxios from "../appAxios";
+// eslint-disable-next-line import/no-cycle
 import { StudyForm } from "@/pages/study/new";
+import appAxios from "../appAxios";
 
 export const fetchStudyList = async (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   sort = "update",
 ): Promise<StudyResponse> => {
   const { data } = await appAxios().get("/study");
@@ -59,17 +61,6 @@ export const fetchStudyNotice = async (
 export const postStudy = async (
   newStudy: StudyForm,
 ): Promise<StudyResponse> => {
-  const res = await fetch(`https://api.server.d0lim.com/studium/api/v1/study`, {
-    method: "POST",
-    body: JSON.stringify(newStudy),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!res.ok) {
-    throw new Error("Fail to create new study");
-  }
-  const data = await res.json();
-
+  const { data } = await appAxios().post(`/study`, newStudy);
   return data;
 };

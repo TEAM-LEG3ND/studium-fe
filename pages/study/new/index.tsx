@@ -1,8 +1,10 @@
-import { useState, useRef } from "react";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { ReactElement, useCallback, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/pages/StudyNew.module.sass";
 import TagInput from "@/components/common/TagInput";
 import { useRouter } from "next/router";
+// eslint-disable-next-line import/no-cycle
 import { postStudy } from "@/apis/study/api";
 
 // TODO: 입력값 validation 추가 .. error message 어떻게 보여줄지
@@ -65,7 +67,7 @@ const initialIsStudyFormError: IsStudyFormError = {
   recruiteDateRange: false,
 };
 
-export default function StudyNew() {
+function StudyNew() {
   const [studyForm, setStudyForm] = useState<StudyForm>(initialStudyForm);
   const [isStudyFormError, setIsStudyFormError] = useState<IsStudyFormError>(
     initialIsStudyFormError,
@@ -95,6 +97,7 @@ export default function StudyNew() {
   function deleteRuleInput(index: number) {
     console.log(index);
     if (studyForm.rules[index]) {
+      // eslint-disable-next-line no-restricted-globals
       const ok = confirm("작성 중인 규칙이 삭제됩니다.");
       if (!ok) {
         return;
@@ -132,6 +135,7 @@ export default function StudyNew() {
 
   function deleteQuestionInput(index: number) {
     if (studyForm.questions[index]) {
+      // eslint-disable-next-line no-restricted-globals
       const ok = confirm("작성 중인 질문이 삭제됩니다.");
       if (!ok) {
         return;
@@ -147,38 +151,12 @@ export default function StudyNew() {
     }));
   }
 
-  function handleChangeTags(newTagList: Array<string>) {
+  const handleChangeTags = useCallback((newTagList: Array<string>) => {
     setStudyForm(studyForm => ({
       ...studyForm,
       tags: newTagList,
     }));
-  }
-
-  async function submitStudyForm() {
-    console.log(studyForm);
-    try {
-      if (!isValidStudyForm()) {
-        return;
-      }
-      const studyFormToCreate = {
-        ...studyForm,
-        startDate: dateInputToISOString(studyForm.startDate),
-        endDate: dateInputToISOString(studyForm.endDate),
-        recruitStartDate: dateInputToISOString(studyForm.recruitStartDate),
-        recruitEndDate: dateInputToISOString(studyForm.recruitEndDate),
-      };
-      const response = await postStudy(studyFormToCreate);
-      console.log(response);
-      alert(
-        "스터디가 성공적으로 만들어졌어요! 지원 목록은 내 스터디에서 확인 가능하답니다!",
-      );
-    } catch (e) {
-      console.error(e);
-      alert(
-        "스터디를 만드는 도중 오류가 발생했어요. 잠시 후 다시 시도해주세요.",
-      );
-    }
-  }
+  }, []);
 
   function isValidStudyForm() {
     let isValid = true;
@@ -279,20 +257,50 @@ export default function StudyNew() {
     return new Date(dateInput).toISOString();
   }
 
+  async function submitStudyForm() {
+    console.log(studyForm);
+    try {
+      if (!isValidStudyForm()) {
+        return;
+      }
+      const studyFormToCreate = {
+        ...studyForm,
+        startDate: dateInputToISOString(studyForm.startDate),
+        endDate: dateInputToISOString(studyForm.endDate),
+        recruitStartDate: dateInputToISOString(studyForm.recruitStartDate),
+        recruitEndDate: dateInputToISOString(studyForm.recruitEndDate),
+      };
+      const response = await postStudy(studyFormToCreate);
+      console.log(response);
+      alert(
+        "스터디가 성공적으로 만들어졌어요! 지원 목록은 내 스터디에서 확인 가능하답니다!",
+      );
+    } catch (e) {
+      console.error(e);
+      alert(
+        "스터디를 만드는 도중 오류가 발생했어요. 잠시 후 다시 시도해주세요.",
+      );
+    }
+  }
+
   function goBack() {
-    //TODO: 빈칸 확인 후 작성된 칸 있으면 확인창 띄워주기
+    // TODO: 빈칸 확인 후 작성된 칸 있으면 확인창 띄워주기
     router.back();
   }
 
   return (
     <div className={styles.mainContainer}>
       <div className={styles.headerContainer}>
-        <button className={styles.submitButton} onClick={submitStudyForm}>
+        <button
+          type="button"
+          className={styles.submitButton}
+          onClick={submitStudyForm}
+        >
           저장하기
         </button>
-        <button onClick={goBack}>
+        <button type="button" onClick={goBack}>
           <Image
-            src={`https://studium-fe.s3.ap-northeast-2.amazonaws.com/public/delete-icon.svg`}
+            src="https://studium-fe.s3.ap-northeast-2.amazonaws.com/public/delete-icon.svg"
             alt="close_icon"
             width={24}
             height={24}
@@ -415,6 +423,7 @@ export default function StudyNew() {
               />
               {index !== 0 && (
                 <button
+                  type="button"
                   key={index}
                   className={styles.deleteInputButton}
                   onClick={() => deleteRuleInput(index)}
@@ -425,7 +434,11 @@ export default function StudyNew() {
             </div>
           ))}
           {studyForm.rules.length < 5 && (
-            <button className={styles.addInputBox} onClick={handleAddRuleBox}>
+            <button
+              type="button"
+              className={styles.addInputBox}
+              onClick={handleAddRuleBox}
+            >
               +
             </button>
           )}
@@ -626,7 +639,7 @@ export default function StudyNew() {
                     id="ONLINE"
                     value="ONLINE"
                     defaultChecked
-                    onChange={e => {
+                    onChange={() => {
                       setStudyForm(studyForm => ({
                         ...studyForm,
                         location: "ONLINE",
@@ -646,7 +659,7 @@ export default function StudyNew() {
                     name="location"
                     id="OFFLINE"
                     value="OFFLINE"
-                    onChange={e =>
+                    onChange={() =>
                       setStudyForm(studyForm => ({
                         ...studyForm,
                         location: "OFFLINE",
@@ -700,6 +713,7 @@ export default function StudyNew() {
               />
               {index !== 0 && (
                 <button
+                  type="button"
                   key={index}
                   className={styles.deleteInputButton}
                   onClick={() => deleteQuestionInput(index)}
@@ -711,6 +725,7 @@ export default function StudyNew() {
           ))}
           {studyForm.questions.length < 5 && (
             <button
+              type="button"
               className={styles.addInputBox}
               onClick={handleAddQuestionBox}
             >
@@ -722,3 +737,9 @@ export default function StudyNew() {
     </div>
   );
 }
+
+StudyNew.getLayout = function getLayout(page: ReactElement) {
+  return page;
+};
+
+export default StudyNew;

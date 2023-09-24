@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styles from "@/styles/components/TagInput.module.sass";
 
 export interface TagInputProps {
@@ -15,12 +15,6 @@ function TagInput({
   const [tagItem, setTagItem] = useState<string>("");
   const tagColors = ["#A78BFA", "#38BDF8", "#FB7185"];
 
-  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value.length !== 0 && e.key === "Enter") {
-      submitTagItem();
-    }
-  };
-
   const submitTagItem = () => {
     if (tagList.length === maxCount) {
       alert("태그는 최대 5개까지 입력 가능합니다.");
@@ -31,6 +25,12 @@ function TagInput({
       onChangeTags([...tagList, tagItem]);
     }
     setTagItem("");
+  };
+
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.currentTarget.value.length !== 0 && e.key === "Enter") {
+      submitTagItem();
+    }
   };
 
   const handleDeleteTagItem = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -45,29 +45,27 @@ function TagInput({
   return (
     <div>
       <div className={styles.tagBox}>
-        {tagList.map((tagItem, index) => {
-          return (
-            <div
-              key={index}
-              className={styles.tagListItem}
-              style={{ background: tagColors[index % 3] }}
+        {tagList.map((tagItem, index) => (
+          <div
+            key={index}
+            className={styles.tagListItem}
+            style={{ background: tagColors[index % 3] }}
+          >
+            <span>{tagItem}</span>
+            <button
+              type="button"
+              onClick={handleDeleteTagItem}
+              className={styles.deleteButton}
+              style={{ color: tagColors[index % 3] }}
             >
-              <span>{tagItem}</span>
-              <button
-                onClick={handleDeleteTagItem}
-                className={styles.deleteButton}
-                style={{ color: tagColors[index % 3] }}
-              >
-                X
-              </button>
-            </div>
-          );
-        })}
+              X
+            </button>
+          </div>
+        ))}
         <input
           type="text"
           placeholder="태그를 추가하려면 Enter를 눌러주세요."
           className={styles.tagItemInput}
-          tabIndex={2}
           onChange={e => setTagItem(e.target.value)}
           value={tagItem}
           onKeyUp={handleEnter}
