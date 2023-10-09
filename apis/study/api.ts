@@ -13,6 +13,8 @@ import {
   pendingMemberListResponseSchema,
   PendingMemberListResponse,
 } from "@/apis/study/schema";
+// eslint-disable-next-line import/no-cycle
+import { StudyForm } from "@/pages/study/new";
 import appAxios from "../appAxios";
 
 export const fetchStudyList = async (
@@ -59,6 +61,7 @@ export const fetchStudyNotice = async (
   return validatedData;
 };
 
+
 export const postNotice = async (
   studyId: number,
   content: string,
@@ -96,3 +99,11 @@ export const getPendingMemberList = async (
 
   return validatedData;
 };
+
+export const postStudy = async (
+  newStudy: StudyForm,
+): Promise<StudyResponse> => {
+  const { data } = await appAxios().post(`/study`, newStudy);
+  return data;
+};
+
