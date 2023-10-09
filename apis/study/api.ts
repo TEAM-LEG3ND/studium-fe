@@ -9,6 +9,9 @@ import {
   studyByIdResponseSchema,
   studyJournalListResponseSchema,
   studyNoticeResponseSchema,
+  noticeMutationRequestSchema,
+  pendingMemberListResponseSchema,
+  PendingMemberListResponse,
 } from "@/apis/study/schema";
 // eslint-disable-next-line import/no-cycle
 import { StudyForm } from "@/pages/study/new";
@@ -52,8 +55,47 @@ export const fetchStudyJournalList = async (
 export const fetchStudyNotice = async (
   id: number,
 ): Promise<StudyNoticeResponse> => {
-  const { data } = await appAxios().get(`/study/${id}/notices`);
+  const { data } = await appAxios().get(`/study/${id}/notice`);
   const validatedData = studyNoticeResponseSchema.parse(data);
+
+  return validatedData;
+};
+
+
+export const postNotice = async (
+  studyId: number,
+  content: string,
+): Promise<StudyNoticeResponse> => {
+  const body = {
+    studyId,
+    content,
+  };
+  const validatedBody = noticeMutationRequestSchema.parse(body);
+  const { data } = await appAxios().post(`/notice`, validatedBody);
+
+  return data;
+};
+
+export const patchNotice = async (
+  id: number,
+  studyId: number,
+  content: string,
+): Promise<StudyNoticeResponse> => {
+  const body = {
+    studyId,
+    content,
+  };
+  const validatedBody = noticeMutationRequestSchema.parse(body);
+  const { data } = await appAxios().patch(`/notice/${id}`, validatedBody);
+
+  return data;
+};
+
+export const getPendingMemberList = async (
+  studyId: number,
+): Promise<PendingMemberListResponse> => {
+  const { data } = await appAxios().get(`/member/study/pending/${studyId}`);
+  const validatedData = pendingMemberListResponseSchema.parse(data);
 
   return validatedData;
 };
@@ -64,3 +106,4 @@ export const postStudy = async (
   const { data } = await appAxios().post(`/study`, newStudy);
   return data;
 };
+

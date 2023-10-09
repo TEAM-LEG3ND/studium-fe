@@ -72,3 +72,24 @@ export const studyNoticeResponseSchema = z.object({
   content: z.string(),
   studyId: z.number(),
 });
+
+export type NoticeMutationRequest = z.infer<typeof noticeMutationRequestSchema>;
+export const noticeMutationRequestSchema = z.object({
+  studyId: z.number(),
+  content: z.string(),
+});
+
+export type PendingMemberListResponse = z.infer<
+  typeof pendingMemberListResponseSchema
+>;
+export const pendingMemberListResponseSchema = z.array(
+  z.object({
+    id: z.number(),
+    userId: z.number(),
+    studyId: z.number(),
+    status: z.string(),
+    type: z.string(),
+    start: z.coerce.date(),
+    end: z.coerce.date(),
+  }),
+);
