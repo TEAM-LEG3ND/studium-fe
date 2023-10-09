@@ -1,13 +1,17 @@
 import { useState } from "react";
 import styles from "@/styles/pages/Study.module.sass";
+import { useNoticePatchMutation } from "@/queries/useNoticeMutation";
+import { StudyNotice } from "@/controllers/study/types";
 
 export type StudyNoticeProps = {
-  notice: string;
+  studyId: number;
+  notice: StudyNotice;
 };
 
-function StudyNotice({ notice }: StudyNoticeProps) {
+function StudyNoticeBox({ studyId, notice }: StudyNoticeProps) {
   const [edit, setEdit] = useState(false);
-  const [text, setText] = useState(notice);
+  const [text, setText] = useState(notice.content);
+  const mutation = useNoticePatchMutation();
 
   const handleNoticeEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -17,6 +21,7 @@ function StudyNotice({ notice }: StudyNoticeProps) {
   const handleNoticeSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setEdit(false);
+    mutation.mutate({ id: notice.id, studyId, content: notice.content });
   };
 
   const handleNoticeInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -47,4 +52,4 @@ function StudyNotice({ notice }: StudyNoticeProps) {
   );
 }
 
-export default StudyNotice;
+export default StudyNoticeBox;

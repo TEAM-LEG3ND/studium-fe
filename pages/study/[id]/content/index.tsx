@@ -11,10 +11,11 @@ import StudyRecruitsNumberInfo from "@/components/study/StudyRecruitsNumberInfo"
 import StudyLocationInfo from "@/components/study/StudyLocationInfo";
 import StudyNotice from "@/components/study/StudyNotice";
 import Tab from "@/components/common/tab/Tab";
-import StudyLogList from "@/components/study/StudyJournalList";
+import StudyJournalList from "@/components/study/StudyJournalList";
 import { StudyRunning } from "@/controllers/study/types";
 import { getStudyRunning } from "@/controllers/study/controller";
 import appGetServerSideProps from "@/apis/appGetServerSideProps";
+import StudyPendingMemberList from "@/components/study/StudyPendingMemberList";
 
 export const getServerSideProps = appGetServerSideProps<{
   data: StudyRunning;
@@ -43,7 +44,7 @@ function Page({
           </Tab.Menus>
           <Tab.Panels className={styles.studyContentTabPanels}>
             <Tab.Panel index={0} className={styles.studyContentTabPanel}>
-              <StudyNotice notice={study.notice.content} />
+              <StudyNotice studyId={study.id} notice={study.notice} />
               <StudyLeaderInfo leader={study.leader} />
               <StudyProgressInfo progress={study.progress} />
               <StudyRuleInfo rules={study.rules} />
@@ -58,12 +59,16 @@ function Page({
                   <button type="button">새 글</button>
                 </header>
                 <div>
-                  <StudyLogList studyId={study.id} />
+                  <StudyJournalList studyId={study.id} />
                 </div>
               </div>
             </Tab.Panel>
             <Tab.Panel index={2}>
-              <div />
+              <div className={styles.studyJournalListPanel}>
+                <div>
+                  <StudyPendingMemberList studyId={study.id} />
+                </div>
+              </div>
             </Tab.Panel>
           </Tab.Panels>
         </Tab>
