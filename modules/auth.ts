@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { LoginInfo, RootState } from "@/types/auth";
+import { AuthInfo, RootState } from "@/types/auth";
 
-const initialState: LoginInfo = {
+const initialState: AuthInfo = {
   islogin: false,
   accessToken: "",
   nickname: "",
@@ -25,5 +25,5 @@ const authSlice = createSlice({
 
 export const { setIsLogin, setAccessToken, setNickname } = authSlice.actions;
 
-export const selectAuthInfo = (state: RootState) => state;
+export const selectAuthInfo = (state: RootState) => state.authInfo;
 export default authSlice.reducer;

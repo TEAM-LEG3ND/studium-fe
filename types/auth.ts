@@ -1,9 +1,9 @@
-export type LoginInfo = {
+export type AuthInfo = {
   islogin: boolean;
   accessToken: string;
   nickname: string;
 };
 
 export type RootState = {
-  loginInfo: LoginInfo;
+  authInfo: AuthInfo;
 };
